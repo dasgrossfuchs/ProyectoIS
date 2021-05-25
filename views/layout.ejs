@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <%- title%>
+    </title>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/4f3c6f3a48.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <!-- HEADER CONTENT HERE -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-lg-top">
+            <div class="container-fluid">
+                <a class="navbar-brand">🏠</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link" href="/">Inicio</a>
+                        <a class="nav-link" href="/about">About</a>
+                        <a class="nav-link" href="/contact">Contacto</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- MAIN CONTENT HERE -->
+
+    <%- defineContent('privado') %>
+        <main>
+            <div class="container">
+                <%- body %>
+            </div>
+        </main>
+        <!-- FOOTER CONTENT HERE -->
+        <footer>
+            Fury Night Developers. &copy;
+        </footer>
+
+</body>
+
+</html>

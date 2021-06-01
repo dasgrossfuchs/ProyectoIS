@@ -1,5 +1,3 @@
-/*jshint esversion: 6*/ 
-
 //importar modulos
 const { Console } = require('console');
 const express = require('express');

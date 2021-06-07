@@ -3,6 +3,9 @@ body {
   line-height: 1.5;
   position: relative;
   min-height: 100vh;
+  background-image: url("/img/1021.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 main {

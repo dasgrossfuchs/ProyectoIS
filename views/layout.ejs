@@ -17,7 +17,8 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-lg-top">
             <div class="container-fluid">
-                <a class="navbar-brand">🏠</a>
+                <a class="navbar-brand" href="/">
+                    <img src="/img/icon.png" alt="" width="30" height="30"> Fury Knowledge</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -36,9 +37,7 @@
 
     <%- defineContent('privado') %>
         <main>
-            <div class="container">
-                <%- body %>
-            </div>
+            <%- body %>
         </main>
         <!-- FOOTER CONTENT HERE -->
         <footer>

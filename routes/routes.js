@@ -15,3 +15,7 @@ router.get('/',(req,res)=>{
 router.get('/about',(req,res)=>{
     res.render('pages/about',{title:'about'});
 });
+
+router.get('/clase',(req,res)=>{
+    res.render('pages/multimedia',{title:'video'});
+});

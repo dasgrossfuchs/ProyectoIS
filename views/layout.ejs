@@ -29,15 +29,6 @@
         document.getElementById('vid').hidden = booly;
         document.getElementById('imy').hidden = !booly;
     }
-
-    function Generar() {
-        var a = Math.floor(Math.random() * 10) + 1;
-        var b = Math.floor(Math.random() * 10) + 1;
-        document.getElementById('actividsuma').innerHTML = `<table><tr><td></td><td>${a}</td></tr>
-                                                            <tr><td>+</td><td></td></tr>
-                                                            <tr><td></td><td>${b}</td></tr>
-                                                            <input type="number" name="resul${x}"></table>`
-    }
 </script>
 <style>
     .contenedor-generico {
@@ -47,8 +38,9 @@
         margin-inline: 10%;
         margin-top: 50px;
         width: 80%;
-        padding-top: 10px;
+        padding-top: 2rem;
         padding-bottom: 10px;
+        padding: .2rem;
     }
 
 
@@ -80,6 +72,10 @@
             transform: translate(4px, 0);
         }
     }
+
+    .nav-link {
+        padding-right: 2rem;
+    }
 </style>
 
 <body>
@@ -88,17 +84,37 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-lg-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/">
-                    <img src="/img/icon.png" alt="" width="30" height="30"> Fury Knowledge</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                    <img src="/img/icon.png" alt="" width="25" height="25"> Fury Knowledge</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link" href="/">Inicio</a>
-                        <a class="nav-link" href="/about">About</a>
-                    </div>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="window.history.back()"><i
+                                    class="fas fa-chevron-circle-left"></i>
+                                Regresar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/bandeja"><i class="fas fa-book"></i> Tus clases</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <span class="navbar-text">
+                                Estas viendo: <%-title%>
+                            </span>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-0 mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link"><i class="fas fa-user-circle"></i></i> Juan Perez</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/"><i class="fas fa-power-off"></i> Cerrar sesión</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>

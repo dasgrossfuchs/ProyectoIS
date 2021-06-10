@@ -36,13 +36,39 @@ router.get('/clase',(req,res)=>{
         clase.mattitulo = '&#127909; ' + clase.mattitulo;
     }
     console.log(clase);
-    res.render('pages/multimedia',{title:'video', clase});
+    res.render('pages/multimedia',{title:'Ejemplo Video', clase});
 });
 
 router.get('/actividad',(req,res)=>{
-    res.render('pages/actividad',{title:'actividad'});
+    res.render('pages/actividad',{title:'Ejemplo Actividad'});
 });
 
 router.get('/clase2',(req,res)=>{
-    res.render('pages/audio',{title:'audio'});
+    res.render('pages/audio',{title:'Ejemplo Audio'});
+});
+router.get('/clase3',(req,res)=>{
+    var clase = {
+        tipo :'imager',
+        matname:'estu',
+        matbck:'http://placekitten.com/600/350',
+        mattitulo:'¿Que es un gato?',
+        texttitulo:'Este es un titulo',
+        textcont:`Este es el contenido que contiene el 
+        texto contenido por el contenedor del texto que 
+        contiene texto para contener el texto descrito 
+        por la actividad de texto para texto, si por 
+        algún motivo contuviera algún otro tipo de 
+        contenido que no fuese posiblemente no serviría 
+        de nada.`,
+        instrucciones:['Lee el texto','Ve el video']
+    }
+    if(clase.tipo == 'video'){
+        clase.mattitulo = '&#127909; ' + clase.mattitulo;
+    }
+    console.log(clase);
+    res.render('pages/multimedia',{title:'Ejemplo Video', clase});
+});
+
+router.get('/sprint1',(req,res)=>{
+    res.render('pages/sprint1',{title:'Ejemplo Audio'});
 });

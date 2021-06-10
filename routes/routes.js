@@ -70,5 +70,5 @@ router.get('/clase3',(req,res)=>{
 });
 
 router.get('/sprint1',(req,res)=>{
-    res.render('pages/sprint1',{title:'Ejemplo Audio'});
+    res.render('pages/sprint1',{title:'Sprint 1'});
 });

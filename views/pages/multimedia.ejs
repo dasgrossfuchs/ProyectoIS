@@ -1,18 +1,6 @@
 <script type='text/javascript'>
-    function vidStart() {
-        document.getElementById('boton-fin').classList.remove("btn-success");
-        document.getElementById('boton-fin').classList.add("btn-secondary");
-        document.getElementById('boton-fin').text = '¡Ya casi!';
-        document.getElementById('boton-fin').disabled = true;
-
-    }
-    function vidEnd(booly) {
-        document.getElementById('boton-fin').classList.remove("btn-secondary");
-        document.getElementById('boton-fin').classList.add("btn-success");
-        document.getElementById('boton-fin').innerHTML = '<i class="far fa-check-circle"></i>  ¡Listo!';
-        document.getElementById('boton-fin').disabled = false;
-        document.getElementById('vid').hidden = booly;
-        document.getElementById('imy').hidden = !booly;
+    function imgLoad() {
+        document.getElementById('imy').src = '<%-clase.matbck%>';
     }
 </script>
 <style>
@@ -57,35 +45,6 @@
         max-height: 20rem;
     }
 
-    #boton-fin:enabled {
-        animation: shake 0.5s;
-        animation-iteration-count: 1;
-    }
-
-    @keyframes shake {
-
-        10%,
-        90% {
-            transform: translate(-1px, 0, );
-        }
-
-        20%,
-        80% {
-            transform: translate(2px, 0);
-        }
-
-        30%,
-        50%,
-        70% {
-            transform: translate(-4px, 0);
-        }
-
-        40%,
-        60% {
-            transform: translate(4px, 0);
-        }
-    }
-
     .inst {
         font-size: 1.1rem;
     }
@@ -102,36 +61,26 @@
 
     }
 </style>
-<div class="contenedor-mmedia">
-    <div class="contenido-gral  d-flex flex-wrap">
-        <div class="d-flex texto-mmedia contenido-mmedia flex-wrap">
-            <div class="inst"><span>Instrucciones:</span>
-                <ul class="inst-lista">
-                    <li>Lee el texto y ve el video!</li>
-                </ul>
-            </div>
-            <span class="titulo-contenido">Este es un titulo </span>
-            Este es el contenido que contiene el texto contenido por el contenedor del texto que contiene texto para
-            contener el texto descrito por la actividad de texto para texto, si por algún motivo contuviera algún otro
-            tipo de contenido que no fuese posiblemente no serviría de nada.
+<div class="contenido-gral  d-flex flex-wrap">
+    <div class="d-flex texto-mmedia contenido-mmedia flex-wrap">
+        <div class="inst"><span>Instrucciones:</span>
+            <ul class="inst-lista">
+                <li>Lee el texto y ve el video!</li>
+            </ul>
         </div>
-        <div class="d-flex flex-column justify-content-center contenido-video contenido-mmedia">
-            <legend class="d-flex flex-wrap">¿Que es una escuela?</legend>
-            <video controls onended="vidEnd(false)" onloadstart="vidStart()" autoplay disablepictureinpicture
-                controlslist="nodownload" id="vid">
-                <source src="/img/estudio.mp4#t=10" type="video/mp4" onerror="vidEnd(true)" onloadstart="" />
-            </video>
-            <img id="imy" src="http://placekitten.com/600/350" hidden>
-        </div>
+        <span class="titulo-contenido">
+            <%- clase.texttitulo %>
+        </span>
+        <%-clase.textcont%>
     </div>
-    <div class="d-flex flex-row-reverse mx-3 mt-2">
-        <form action="/bandeja" method="POST">
-            <input type="hidden" name="Clase" value="1">
-            <input type="hidden" name="Tema" value="2">
-            <input type="hidden" name="userId" value="1">
-            <input type="hidden" name="contenido" value="2">
-            <button type="submit" class="btn btn-success border-1 border-dark" id="boton-fin"><i
-                    class="far fa-times-circle"></i> ¡Ya casi!</button>
-        </form>
+    <div class="d-flex flex-column justify-content-center contenido-video contenido-mmedia">
+        <legend class="d-flex flex-wrap">
+            <%- clase.mattitulo%>
+        </legend>
+        <video controls onended="vidEnd(false)" onloadstart="vidStart()" autoplay disablepictureinpicture
+            controlslist="nodownload" id="vid">
+            <source src="/video/<%-clase.matname%>" type="video/mp4" onerror="vidEnd(true)" onloadstart="" />
+        </video>
+        <img id="imy" src="/img/<%-clase.matname%>" onerror="imgLoad()" hidden>
     </div>
 </div>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- Este layout es para contenido  de la clase-->
 
 <head>
     <meta charset="UTF-8">
@@ -11,6 +12,74 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
+<script type='text/javascript'>
+    function vidStart() {
+        document.getElementById('boton-fin').classList.remove("btn-success");
+        document.getElementById('boton-fin').classList.add("btn-secondary");
+        document.getElementById('boton-fin').innerHTML = '<i class="far fa-times-circle"></i> ¡Ya casi!';
+        document.getElementById('boton-fin').text = '¡Ya casi!';
+        document.getElementById('boton-fin').disabled = true;
+    }
+    function vidEnd(booly) {
+        document.getElementById('boton-fin').classList.remove("btn-secondary");
+        document.getElementById('boton-fin').classList.add("btn-success");
+        document.getElementById('boton-fin').innerHTML = '<i class="far fa-check-circle"></i>  ¡Listo!';
+        document.getElementById('boton-fin').disabled = false;
+        document.getElementById('vid').hidden = booly;
+        document.getElementById('imy').hidden = !booly;
+    }
+
+    function Generar() {
+        var a = Math.floor(Math.random() * 10) + 1;
+        var b = Math.floor(Math.random() * 10) + 1;
+        document.getElementById('actividsuma').innerHTML = `<table><tr><td></td><td>${a}</td></tr>
+                                                            <tr><td>+</td><td></td></tr>
+                                                            <tr><td></td><td>${b}</td></tr>
+                                                            <input type="number" name="resul${x}"></table>`
+    }
+</script>
+<style>
+    .contenedor-generico {
+        background-color: #A9D8DAe3;
+        border: 5px solid #C2F9BB;
+        border-radius: 15px;
+        margin-inline: 10%;
+        margin-top: 50px;
+        width: 80%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+
+    #boton-fin:enabled {
+        animation: shake 0.5s;
+        animation-iteration-count: 1;
+    }
+
+    @keyframes shake {
+
+        10%,
+        90% {
+            transform: translate(-1px, 0, );
+        }
+
+        20%,
+        80% {
+            transform: translate(2px, 0);
+        }
+
+        30%,
+        50%,
+        70% {
+            transform: translate(-4px, 0);
+        }
+
+        40%,
+        60% {
+            transform: translate(4px, 0);
+        }
+    }
+</style>
 
 <body>
     <!-- HEADER CONTENT HERE -->
@@ -37,7 +106,19 @@
 
     <%- defineContent('privado') %>
         <main>
-            <%- body %>
+            <div class="contenedor-generico">
+                <%- body %>
+                    <div class="d-flex flex-row-reverse mx-3 mt-2">
+                        <form action="/bandeja" method="POST">
+                            <input type="hidden" name="Clase" value="1">
+                            <input type="hidden" name="Tema" value="2">
+                            <input type="hidden" name="userId" value="1">
+                            <input type="hidden" name="contenido" value="2">
+                            <button type="submit" class="btn btn-success border-1 border-dark" id="boton-fin"><i
+                                    class="far fa-check-circle"></i> ¡Listo!</button>
+                        </form>
+                    </div>
+            </div>
         </main>
         <!-- FOOTER CONTENT HERE -->
         <footer>

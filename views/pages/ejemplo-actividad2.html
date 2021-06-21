@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Ejemplo basico de clases-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Titulo</title>
+    <script src="./public/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/4f3c6f3a48.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./public/css/styles.css">
+    <link rel="icon" href="./public/img/icon.png">
+</head>
+<script type='text/javascript'>//Script Generico -> Carga carga()
+    //Esto es solo por mientras, para crear lo de la clase, 
+    // de igual manera se podria llegar a cambiar mas adelante segun convenga
+    function carga() {
+        var tc = document.getElementById('TipoClase').value;
+        if (tc === 'actividad') {
+            for (let index = 1; index < 5; index++) {
+                var a = Math.floor(Math.random() * 10) + 1;
+                var b = Math.floor(Math.random() * 10) + 1;
+                document.getElementById(`pri${index}`).value = a;
+                document.getElementById(`seg${index}`).value = b;
+            }
+            document.getElementById('boton-fin').classList.remove("btn-success");
+            document.getElementById('boton-fin').classList.add("btn-secondary");
+            document.getElementById('boton-fin').innerHTML = '<i class="far fa-times-circle"></i> ¡Ya casi!';
+            document.getElementById('boton-fin').disabled = true;
+        }
+
+    }
+    function vidStart() {
+        document.getElementById('boton-fin').classList.remove("btn-success");
+        document.getElementById('boton-fin').classList.add("btn-secondary");
+        document.getElementById('boton-fin').innerHTML = '<i class="far fa-times-circle"></i> ¡Ya casi!';
+        document.getElementById('boton-fin').text = '¡Ya casi!';
+        document.getElementById('boton-fin').disabled = true;
+    }
+    function vidEnd(booly) {
+        document.getElementById('boton-fin').classList.remove("btn-secondary");
+        document.getElementById('boton-fin').classList.add("btn-success");
+        document.getElementById('boton-fin').innerHTML = '<i class="far fa-check-circle"></i>  ¡Listo!';
+        document.getElementById('boton-fin').disabled = false;
+        document.getElementById('vid').hidden = booly;
+        document.getElementById('imy').hidden = !booly;
+    }
+    function Generar() {
+        for (let index = 1; index < 5; index++) {
+            var a = Math.floor(Math.random() * 5) + 5;
+            var b = Math.floor(Math.random() * 5) + 1;
+            document.getElementById(`pri${index}`).value = a;
+            document.getElementById(`seg${index}`).value = b;
+        }
+        document.getElementById('boton-fin').classList.remove("btn-success");
+        document.getElementById('boton-fin').classList.add("btn-secondary");
+        document.getElementById('boton-fin').text = '¡Ya casi!';
+        document.getElementById('boton-fin').disabled = true;
+
+    }
+    function Validar() {
+        var correctas = 0;
+        for (let index = 1; index < 5; index++) {
+            var x = parseInt(document.getElementById(`pri${index}`).value);
+            var y = parseInt(document.getElementById(`seg${index}`).value);
+            var res = parseInt(document.getElementById(`resul${index}`).value);
+            if (res === (x - y)) { correctas++ }
+            else {
+                document.getElementById(`resul${index}`).style.color = 'red';
+            }
+        }
+        if (correctas == 4) {
+
+            document.getElementById('boton-fin').classList.remove("btn-secondary");
+            document.getElementById('boton-fin').classList.add("btn-success");
+            document.getElementById('boton-fin').innerHTML = '<i class="far fa-check-circle"></i>  ¡Listo!';
+            document.getElementById('boton-fin').disabled = false;
+        }
+    }
+
+</script>
+<style>
+    .contenedor-generico {
+        background-color: #A9D8DAe3;
+        border: 5px solid #C2F9BB;
+        border-radius: 15px;
+        margin-inline: 10%;
+        margin-top: 50px;
+        width: 80%;
+        padding-top: 2rem;
+        padding-bottom: 10px;
+        padding: .2rem;
+    }
+
+    .contenido-gral {
+        align-self: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .texto-mmedia {
+        width: 25rem;
+        text-align: justify;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .texto-mmedia .titulo-contenido {
+        font-size: 1.3rem;
+        color: #24277F;
+    }
+
+    .contenido-video {
+        max-width: 30rem;
+        max-height: 20rem;
+    }
+
+
+    .inst {
+        font-size: 1.1rem;
+    }
+
+    .inst-lista {
+        color: #2b2b2b;
+        font-size: 0.95rem;
+    }
+
+    #imy {
+        width: 600px;
+        max-height: 15rem;
+        max-width: 30rem;
+    }
+
+    .padeado {
+        padding-left: 2.25rem;
+    }
+
+    .pr-3 {
+        border-radius: 10px;
+        border: 2px solid black;
+        background-color: #023778;
+        color: #9BC7FD !important;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    .input-group-text,
+    .ipt {
+        height: 2rem;
+        border-radius: 10px;
+        border: 2px solid black;
+    }
+</style>
+
+<body onload="Generar()">
+    <!-- HEADER -->
+    <header class="sticky-lg-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <img src="./public/img/icon.png" alt="" width="25" height="25"> Fury Knowledge</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="window.history.back()"><i
+                                    class="fas fa-chevron-circle-left"></i>
+                                Regresar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/bandeja"><i class="fas fa-book"></i> Tus clases</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <span class="navbar-text">
+                                Estas viendo: Aqui Titulo de la pagina
+                            </span>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-0 mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link"><i class="fas fa-user-circle"></i></i> Juan Perez</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/"><i class="fas fa-power-off"></i> Cerrar sesión</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Cuerpo principal -->
+    <main>
+        <div class="contenedor-generico">
+            <div class="m-0 p-0 d-inline">
+                <!-- AQUI VA EL CONTENIDO -->
+
+                <div class="d-flex flex-column justify-content-lg-evenly px-3 mt-2">
+                    <div class="d-flex texto-mmedia contenido-mmedia flex-wrap">
+                        <div class="inst"><span>Instrucciones:</span>
+                            <ul class="inst-lista">
+                                <li>Escribe en el recuadro el resultado de la resta!</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <form>
+                            <!-- Esta parte se puede mejorar, pero la verdada ahorita no importa :v -->
+                            <div id="actividsuma" class="d-flex flex-row flex-wrap justify-content-evenly pt-5">
+                                <div class="mx-3">
+                                    <div class="input-group mb-0 padeado">
+                                        <input class="pr-3" type="number" id="pri1" disabled>
+                                    </div>
+                                    <div class="input-group mb-0">
+                                        <span class="input-group-text pl-3">+</span>
+                                        <input class="pr-3" type="number" id="seg1" disabled>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text pl-3">=</span>
+                                        <input class='ipt' type="number" id="resul1">
+                                    </div>
+                                </div>
+                                <div class="mx-3">
+                                    <div class="input-group mb-0 padeado">
+                                        <input class="pr-3" type="number" id="pri2" disabled>
+                                    </div>
+                                    <div class="input-group mb-0">
+                                        <span class="input-group-text pl-3">+</span>
+                                        <input class="pr-3" type="number" id="seg2" disabled>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text pl-3">=</span>
+                                        <input class='ipt' type="number" id="resul2">
+                                    </div>
+                                </div>
+                                <div class="mx-3">
+                                    <div class="input-group mb-0 padeado">
+                                        <input class="pr-3" type="number" id="pri3" disabled>
+                                    </div>
+                                    <div class="input-group mb-0">
+                                        <span class="input-group-text pl-3">+</span>
+                                        <input class="pr-3" type="number" id="seg3" disabled>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text pl-3">=</span>
+                                        <input class='ipt' type="number" id="resul3">
+                                    </div>
+                                </div>
+                                <div class="mx-3">
+                                    <div class="input-group mb-0 padeado">
+                                        <input class="pr-3" type="number" id="pri4" disabled>
+                                    </div>
+                                    <div class="input-group mb-0">
+                                        <span class="input-group-text pl-3">+</span>
+                                        <input class="pr-3" type="number" id="seg4" disabled>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text pl-3">=</span>
+                                        <input class='ipt' type="number" id="resul4">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="d-flex flex-row justify-content-end">
+                        <input type="button" onclick="Validar()" class='btn btn-danger' value='Validar resultado'>
+                    </div>
+                </div>
+                <!-- AQUI VA EL CONTENIDO -->
+            </div>
+            <div class="d-flex flex-row-reverse mx-3 mt-2">
+                <form action="/bandeja" method="POST">
+                    <input type="hidden" id="TipoClase" value='<%-clase.tipo%>'>
+                    <input type="hidden" name="Clase" value="1">
+                    <input type="hidden" name="Tema" value="2">
+                    <input type="hidden" name="userId" value="1">
+                    <input type="hidden" name="contenido" value="2">
+                    <button type="submit" class="btn btn-success border-1 border-dark" id="boton-fin"><i
+                            class="far fa-check-circle"></i> ¡Listo!</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <!-- FOOTER -->
+    <footer>
+        Fury Night Developers. &copy;
+    </footer>
+
+</body>
+
+</html>

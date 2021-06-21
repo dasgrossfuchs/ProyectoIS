@@ -15,18 +15,25 @@ app.use(express.urlencoded({extended:true}));
 
 //Recursos públicos
 app.use(express.static('public'));
-
-mongoose.connect(config.db, config.urlParser, (err,res)=>{
-  if(err){
+try{
+  mongoose.connect(config.db, config.urlParser, (err,res)=>{
+    if(err){
       console.log(`Error al conectar en la BD ${err}`);
-  }
-  else  {
+    }
+    else  {
       console.log('Conexión a la BD exitosa');
       app.listen(config.port, ()=>{
-          console.log(`Ejecutando en http://localhost:${config.port}`);
+        console.log(`Ejecutando en http://localhost:${config.port}`);
       });
-  }
-});
+    }
+  });
+}
+catch(e){console.error(e);}
+finally{
+
+}
+
+
 
 //Cargar modulo de routes
 const router= require('./routes/routes.js'); 

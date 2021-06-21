@@ -25,7 +25,7 @@
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
             chart.draw(data, options);
             var percent = 0;
-            if (done != 0) {
+            if (done != 0 && tareas != 0) {
                 var handler = setInterval(function () {
                     if (percent > ((done / (tareas + done) * 100) - 1))
                         // stop the loop
@@ -37,6 +37,22 @@
                     data.setValue(1, 1, percent);
                     // update the pie
                     chart.draw(data, options);
+                    // check if we have reached the desired value
+                }, 30);
+            }
+            var percent = 0;
+            if (tareas == 0) {
+                var handler = setInterval(function () {
+                    // values increment
+                    percent += 1;
+                    // apply new values
+                    data.setValue(0, 1, 100 - percent);
+                    data.setValue(1, 1, percent);
+                    // update the pie
+                    chart.draw(data, options);
+                    if (percent > (99))
+                        // stop the loop
+                        clearInterval(handler);
                     // check if we have reached the desired value
                 }, 30);
             }
@@ -69,7 +85,7 @@
             var chart = new google.visualization.PieChart(document.getElementById('matepiechart'));
             chart.draw(data, options);
             var percent = 0;
-            if (donem != 0) {
+            if (donem != 0 && tareas != 0) {
                 var handler = setInterval(function () {
                     if (percent > ((donem / (tareasm + donem) * 100) - 1))
                         // stop the loop
@@ -81,6 +97,22 @@
                     data.setValue(1, 1, percent);
                     // update the pie
                     chart.draw(data, options);
+                    // check if we have reached the desired value
+                }, 30);
+            }
+            var percent = 0;
+            if (tareasm == 0) {
+                var handler = setInterval(function () {
+                    // values increment
+                    percent += 1;
+                    // apply new values
+                    data.setValue(0, 1, 100 - percent);
+                    data.setValue(1, 1, percent);
+                    // update the pie
+                    chart.draw(data, options);
+                    if (percent > (99))
+                        // stop the loop
+                        clearInterval(handler);
                     // check if we have reached the desired value
                 }, 30);
             }

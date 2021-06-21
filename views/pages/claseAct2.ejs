@@ -11,7 +11,7 @@
                 var y = parseInt(document.getElementById(`seg${index}${ii}`).value);
                 var resul = parseInt(document.getElementById(`resul${index}${ii}`).value);
                 if (!resul) resul = 0;
-                if (resul === (x + y)) { correctas++; }
+                if (resul === (x - y)) { correctas++; }
                 else {
                     setTimeout(() => {
                         document.getElementById(`ac${index}${ii}`).classList.add("wrong");
@@ -26,7 +26,7 @@
                 var y = parseInt(document.getElementById(`seg${fullcols + 1}${index}`).value);
                 var resul = parseInt(document.getElementById(`resul${fullcols + 1}${index}`).value);
                 if (!resul) resul = 0;
-                if (resul === (x + y)) { correctas++; }
+                if (resul === (x - y)) { correctas++; }
                 else {
 
                     setTimeout(() => {
@@ -156,7 +156,7 @@
                                 <span id="priga"
                                     class="d-flex flex-row justify-content-end"><span></span><span>2</span></span>
                                 <span id="seg1"
-                                    class="d-flex flex-row justify-content-between"><span>+</span><span>3</span></span>
+                                    class="d-flex flex-row justify-content-between"><span>-</span><span>3</span></span>
                                 <span><input type="number" id="resulrc"></span>
                             </div>
                         </div>
@@ -178,12 +178,12 @@
                     for (let index = 0; index < fullcols; index++) {
                         fullgrouphtml += `<div id="ar${index}" class="d-inline-flex flex-row justify-content-evenly">`;
                         for (let ii = 0; ii < 4; ii++) {
-                            var a = Math.floor(Math.random() * 10) + 1;
-                            var b = Math.floor(Math.random() * 10) + 1;
+                            var a = Math.floor(Math.random() * 6) + 5;
+                            var b = Math.floor(Math.random() * 5) + 1;
                             fullgrouphtml += `<div class="act-contenido" id="ac${index}${ii}">
                                 <div class="act-group">
                                     <span class="d-flex flex-row justify-content-end"><input type="hidden" id="pri${index}${ii}" value="${a}"><span>${a}</span></span>
-                                    <span class="d-flex flex-row justify-content-between"><input type="hidden" id="seg${index}${ii}" value="${b}"><span>+</span><span>${b}</span></span>
+                                    <span class="d-flex flex-row justify-content-between"><input type="hidden" id="seg${index}${ii}" value="${b}"><span>-</span><span>${b}</span></span>
                                     <span><input type="number" id="resul${index}${ii}"></span>
                                 </div>
                             </div>`;
@@ -198,7 +198,7 @@
                             fullgrouphtml += `<div class="act-contenido" id="ac${fullcols + 1}${index}">
                                 <div class="act-group">
                                     <span class="d-flex flex-row justify-content-end"><input type="hidden" id="pri${fullcols + 1}${index}" value="${a}"><div>${a}</div></span>
-                                    <span class="d-flex flex-row justify-content-between"><input type="hidden" id="seg${fullcols + 1}${index}" value="${b}"><div>+</div><div>${b}</div></span>
+                                    <span class="d-flex flex-row justify-content-between"><input type="hidden" id="seg${fullcols + 1}${index}" value="${b}"><div>-</div><div>${b}</div></span>
                                     <span><input type="number" id="resul${fullcols + 1}${index}"></span>
                                 </div>
                             </div>`;
@@ -214,7 +214,7 @@
                         <input class="pr-3" type="number" id="pri1" disabled>
                     </div>
                     <div class="input-group mb-0">
-                        <span class="input-group-text pl-3">+</span>
+                        <span class="input-group-text pl-3">-</span>
                         <input class="pr-3" type="number" id="seg1" disabled>
                     </div>
                     <div class="input-group mb-3">
@@ -227,7 +227,7 @@
                         <input class="pr-3" type="number" id="pri2" disabled>
                     </div>
                     <div class="input-group mb-0">
-                        <span class="input-group-text pl-3">+</span>
+                        <span class="input-group-text pl-3">-</span>
                         <input class="pr-3" type="number" id="seg2" disabled>
                     </div>
                     <div class="input-group mb-3">
@@ -240,7 +240,7 @@
                         <input class="pr-3" type="number" id="pri3" disabled>
                     </div>
                     <div class="input-group mb-0">
-                        <span class="input-group-text pl-3">+</span>
+                        <span class="input-group-text pl-3">-</span>
                         <input class="pr-3" type="number" id="seg3" disabled>
                     </div>
                     <div class="input-group mb-3">
@@ -253,7 +253,7 @@
                         <input class="pr-3" type="number" id="pri4" disabled>
                     </div>
                     <div class="input-group mb-0">
-                        <span class="input-group-text pl-3">+</span>
+                        <span class="input-group-text pl-3">-</span>
                         <input class="pr-3" type="number" id="seg4" disabled>
                     </div>
                     <div class="input-group mb-3">

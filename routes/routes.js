@@ -1,6 +1,5 @@
 //importar modulos
 const mongoose = require('mongoose');
-const ejsLint = require('ejs-lint');
 const { Console } = require('console');
 const express = require('express');
 const expressLayouts = require("express-ejs-layouts");
@@ -114,7 +113,7 @@ router.get('/about',(req,res)=>{
 
 router.get('/clase',(req,res)=>{
     clase.tipo = 'video';
-    console.log(clase);
+    // console.log(clase);
     res.render('pages/multimedia',{title:'Ejemplo Video', clase});
 });
 
@@ -234,7 +233,7 @@ router.post('/admon',(req,res)=>{
         nvoClase.tipo = req.body.tipo;
         var inst = req.body.inst.split(',');
         nvoClase.inst = inst;
-        console.log(nvoClase);
+        // console.log(nvoClase);
         nvoClase.save((err,registro)=>{
         if(err) return res.status(500).send({
             message:`Error al realizar la petición : ${err}`
@@ -313,16 +312,16 @@ router.get('/dashboard',(req,res)=>{
                             finlist.mate.push(newel);
                         }});
                     });
-                    console.log('1');
+                    // console.log('1');
                     res.render('pages/dash',{title:'Herramientas',pend:finlist,done:proglist,username:user});
                 }
                 else{
-                console.log('2');
+                // console.log('2');
                 res.render('pages/dash',{title:'Herramientas',pend:clist,done:proglist,username:'user'});
                 }
             }).lean();
         } else{
-            console.log('3');
+            // console.log('3');
             res.render('pages/dash',{title:'Herramientas',pend:clist,done:proglist,username:'user'});
         }
     }).lean();
@@ -474,8 +473,15 @@ function getClassAct(req,res){
             res.redirect('/');
         }
         else{
+            // console.log(resultado);
             let titulo='Clase - '+ resultado[0].titulo;
+            if(resultado[0].texto =='suma')
             res.render('pages/claseAct',{title:titulo,username:user,classId:classId,clase:resultado[0],nombre:name});
+            if(resultado[0].texto =='resta')
+            res.render('pages/claseAct2',{title:titulo,username:user,classId:classId,clase:resultado[0],nombre:name});
+            if(resultado[0].texto =='comb' || resultado[0].texto =='combinado')
+            res.render('pages/claseAct3',{title:titulo,username:user,classId:classId,clase:resultado[0],nombre:name});
+            
         } 
     }).lean();
 }

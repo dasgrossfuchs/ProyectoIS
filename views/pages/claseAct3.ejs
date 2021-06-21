@@ -1,0 +1,202 @@
+<style>
+    .titulo-contenido,
+    .titulo-material {
+        font-size: 1.5rem;
+        color: #24277F;
+        font-weight: 600;
+    }
+
+    .inst {
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
+
+    .inst-lista {
+        color: transparent;
+        max-width: 15rem;
+    }
+
+    .inst-contenido {
+        font-family: Arial, Helvetica, sans-serif;
+        color: black;
+        margin-left: -1.1rem;
+        text-align: justify;
+    }
+
+    .text-contenido {
+        color: black;
+        font-size: 1.1rem;
+        max-width: 25rem;
+        text-align: justify;
+    }
+
+    .material {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .material-imagen img {
+        display: cover;
+        background-color: black;
+        max-width: 30rem;
+        height: auto;
+        max-height: 13rem;
+        border-radius: 15px;
+        box-shadow: 5px 5px 20px -5px #000000;
+    }
+
+    .contenedor-actividad {
+        margin: 1rem 2rem 0.2rem 2rem;
+        padding: 2rem 2rem;
+        background-color: #7fd1e0;
+        /* background-color: #A9E9EF; */
+        /* border: 5px solid #474e45b4; */
+        border-radius: .5rem 5rem;
+        box-shadow: 5px 5px 20px -5px #000000;
+        width: 50rem;
+    }
+
+    .contenedor-actividad .input-group {
+        background-color: white;
+        max-width: 4rem;
+    }
+
+    .act-contenido {
+        background-color: white;
+        max-width: 12rem;
+        padding: .5rem 1rem .5rem 1rem;
+        box-shadow: 5px 5px 20px -5px #000000;
+        border-radius: .5rem .5rem;
+        margin: 1.5rem;
+    }
+
+    .act-contenido input {
+        background-color: white;
+        border-radius: .5rem .5rem;
+        margin: 0rem 0rem 0rem -0.5rem;
+    }
+
+    .act-contenido img {
+        background-color: white;
+        border-radius: .5rem .5rem;
+        max-width: 10rem;
+        max-height: 10rem;
+    }
+
+    .input-group-text {
+        max-width: 1rem;
+        text-align: center;
+    }
+</style>
+<div class="w-100 h-100 d-inline-flex flex-row flex-wrap justify-content-evenly">
+    <div class=" h-100 d-inline-flex flex-column flex-wrap justify-content-evenly">
+        <span class="titulo-contenido d-flex flex-wrap">
+            <%- clase.titulo %>
+        </span>
+        <div><span class="inst">Instrucciones:</span>
+            <ul class="inst-lista">
+                <% for(var i=0; i< clase.inst.length; i++) {%>
+                    <li class="w-100 text-wrap">
+                        <div class=" inst-contenido">
+                            <i class="far fa-hand-point-right"></i>
+                            <%=clase.inst[i]%>
+                        </div>
+                    </li>
+                    <%}%>
+            </ul>
+        </div>
+        <div class=" d-inline-flex flex-column flex-wrap justify-content-start contenedor-actividad">
+            <div class=" d-inline-flex flex-row flex-wrap justify-content-center">
+                <div id="ag" class="d-inline-flex flex-column justify-content-evenly flex-wrap">
+                    <div class="d-inline-flex flex-row justify-content-center">
+                        <div class="act-contenido" id="ac00">
+                            <img src="https://png.pngtree.com/png-clipart/20190611/original/pngtree-a-cartoon-dog-png-image_2563043.jpg"
+                                text-align="center" width="175" height="175">
+                            <span><input type="text" id="resul00" style="text-align: center !important;"></span>
+                            <input type="hidden" id="val00" value="perro">
+                            <input type="hidden" id="val01" value="gato">
+                            <input type="hidden" id="val02" value="ardilla">
+                            <input type="hidden" id="val03" value="mariposa">
+                        </div>
+                        <div class="act-contenido" id="ac01">
+                            <img src="https://png.pngtree.com/png-clipart/20201208/original/pngtree-hand-drawn-cartoon-gray-cat-clipart-png-image_5529526.jpg"
+                                text-align="center" width="175" height="175">
+                            <span><input type="text" id="resul01" style="text-align: center !important;"></span>
+                        </div>
+                    </div>
+                    <div id="ag" class="d-inline-flex flex-row justify-content-evenly flex-wrap">
+                        <div class="act-contenido" id="ac02">
+                            <img src="https://i.pinimg.com/originals/84/5f/49/845f495700a1586900fecec229a0f707.jpg"
+                                text-align="center" width="175" height="175">
+                            <span><input type=" text" id="resul02" style="text-align: center !important;"></span>
+                        </div>
+                        <div class="act-contenido" id="ac03">
+                            <img class="align-self-center"
+                                src="https://png.pngtree.com/png-clipart/20190920/original/pngtree-sky-blue-butterfly-cartoon-illustration-png-image_4688402.jpg"
+                                text-align="center" width="175" height="175">
+                            <span><input type="text" id="resul03" style="text-align: center !important;"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-row justify-content-end botonval">
+                <input type="button" onclick="Vali()" class='btn btn-danger' value='Validar resultado'>
+            </div>
+            <script type='text/javascript'>
+                function Vali() {
+                    let correctas = 0;
+                    document.getElementById('ac00').classList.remove("wrong");
+                    document.getElementById('ac01').classList.remove("wrong");
+                    document.getElementById('ac02').classList.remove("wrong");
+                    document.getElementById('ac03').classList.remove("wrong");
+                    var val1 = document.getElementById('val00').value;
+                    var val2 = document.getElementById('val01').value;
+                    var val3 = document.getElementById('val02').value;
+                    var val4 = document.getElementById('val03').value;
+                    console.log(val1);
+                    var res1 = '';
+                    var res2 = '';
+                    var res3 = '';
+                    var res4 = '';
+                    // var res1 = document.getElementById('resul00').value;
+                    // var res2 = document.getElementById('resul01').value;
+                    // var res3 = document.getElementById('resul02').value;
+                    // var res4 = document.getElementById('resul03').value;
+                    res1 = document.getElementById('resul00').value;
+                    res2 = document.getElementById('resul01').value;
+                    res3 = document.getElementById('resul02').value;
+                    res4 = document.getElementById('resul03').value;
+                    if (!res1) { res1 = ''; }
+                    if (!res2) { res2 = ''; }
+                    if (!res3) { res3 = ''; }
+                    if (!res4) { res4 = ''; }
+
+                    if (res1 == val1) { correctas++; }
+                    else {
+                        setTimeout(() => { document.getElementById('ac00').classList.add("wrong"); }, 500);
+                    }
+                    if (res2 == val2) { correctas++; }
+                    else {
+                        setTimeout(() => { document.getElementById('ac01').classList.add("wrong"); }, 500);
+                    }
+                    if (res3 == val3) { correctas++; }
+                    else {
+                        setTimeout(() => { document.getElementById('ac02').classList.add("wrong"); }, 500);
+                    }
+                    if (res4 == val4) { correctas++; }
+                    else {
+                        setTimeout(() => { document.getElementById('ac03').classList.add("wrong"); }, 500);
+                    }
+                    if (correctas == 4) {
+                        document.getElementById('boton-fin').classList.remove("btn-secondary");
+                        document.getElementById('boton-fin').classList.add("btn-success");
+                        document.getElementById('boton-fin').innerHTML = '<i class="far fa-check-circle"></i>  ¡Listo!';
+                        document.getElementById('boton-fin').disabled = false;
+                    }
+                }
+            </script>
+            <input type="hidden" id="cantidad" value=4>
+
+        </div>
+    </div>
+</div>

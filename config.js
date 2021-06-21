@@ -1,7 +1,7 @@
 module.exports={
     port: process.env.PORT || 8080,
     // db: process.env.MONGODB || 'mongodb://localhost:27017/FuryDB',
-    db: process.env.MONGODB || "mongodb+srv://proyectmanager:4TrcYYTtXjFKuyOd@appis.65uar.mongodb.net/FuryDB?retryWrites=true&w=majority",
+    db: process.env.MONGODB || "mongodb+srv://proyectmanager:4TrcYYTtXjFKuyOd@appis.65uar.mongodb.net/FuryDB",
     urlParser : { 
         useNewUrlParser: true,
         useUnifiedTopology: true, 

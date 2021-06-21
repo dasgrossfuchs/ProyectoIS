@@ -1,0 +1,298 @@
+<script>
+    function carga() {
+        var status = document.getElementById('status').value;
+        if (status === 'class') {
+            document.getElementById('msgc').innerHTML = 'Clase creada correctamente';
+            document.getElementById('msg').hidden = false;
+            document.getElementById('msghr').hidden = false;
+        }
+        if (status === 'act') {
+            document.getElementById('msgc').innerHTML = 'Actividad creada correctamente';
+            document.getElementById('msg').hidden = false;
+            document.getElementById('msghr').hidden = false;
+        }
+        if (status === 'borrado') {
+            document.getElementById('msgc').innerHTML = 'Clase borrada correctamente';
+            document.getElementById('msg').hidden = false;
+            document.getElementById('msghr').hidden = false;
+        }
+        if (status != 'none') { setTimeout(() => { window.location.replace("/admon"); }, 1000); }
+    }
+</script>
+<style>
+    .adm-title {
+        font-size: 2rem;
+        color: #24277F;
+    }
+
+    .adm-subt {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #24277F;
+    }
+
+    .adm-subto {
+        color: #7f2424;
+    }
+
+    .grupo-control {
+        border: 3px solid #00000038;
+        border-radius: 15px;
+        padding-inline: 3rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        min-width: 25rem;
+        background-color: #0000001e;
+    }
+
+    .grupo-control2 {
+        border: 3px solid #00000038;
+        border-radius: 15px;
+        padding-inline: .5rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        background-color: #0000001e;
+        width: 50rem;
+        max-width: 800px;
+    }
+
+    .grupo-control3 {
+        border: 3px solid #00000038;
+        border-radius: 15px;
+        padding-inline: .5rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        background-color: #0000001e;
+        min-width: 50%;
+        max-width: 50%;
+    }
+
+    #msg {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: darkgreen;
+        align-self: center;
+    }
+</style>
+
+<body onload="carga()">
+    <div class="d-flex flex-column justify-content-center">
+        <div>
+            <span class="adm-title d-flex flex-row justify-content-evenly">Herramientas Administrativas</span>
+            <hr>
+        </div>
+        <div id="msg" hidden>
+            <span id="msgc"></span> <br>
+            Cargando cambios.....
+        </div>
+        <hr id="msghr" hidden>
+        <div>
+            <div class="d-flex flex-column justify-content-evenly grupo-control">
+                <span class="adm-subt d-flex flex-row justify-content-evenly">Creador de clases</span>
+                <form action="/admon" method="post" class="d-flex flex-column justify-content-evenly">
+                    <div class="input-group mb-2 mt-2">
+                        <label class="input-group-text">Curso</label>
+                        <select class="form-select" name="curso" required>
+                            <option value="">Elije un curso</option>
+                            <option value="esp">Español</option>
+                            <option value="mat">Matemáticas</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-2">
+                        <span class="input-group-text">Titulo</span>
+                        <input name='titulo' type="text" class="form-control" placeholder="Titulo de la clase" required>
+                    </div>
+                    <div class="input-group mb-2">
+                        <span class="input-group-text">Contenido textual</span>
+                        <input name='texto' type="text" class="form-control" placeholder="Texto de la clase" required>
+                    </div>
+                    <div class="input-group mb-2">
+                        <label class="input-group-text">Tipo de clase</label>
+                        <select class="form-select" name="tipo" required>
+                            <option value="">Elije un tipo</option>
+                            <option value="video">Video</option>
+                            <option value="imagen">Imagen</option>
+                            <option value="audio">Audio</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-2">
+                        <span class="input-group-text">Nombre material</span>
+                        <input name='matname' type="text" class="form-control" placeholder="Nombre del material"
+                            required>
+                    </div>
+                    <div class="input-group mb-2">
+                        <span class="input-group-text">Material</span>
+                        <input name='material' type="text" class="form-control" placeholder="Nombre del archivo"
+                            required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Material alternativo</span>
+                        <input name='bckupMat' type="text" class="form-control" placeholder="Link alternativo" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Instrucciones</span>
+                        <input name='inst' type="text" class="form-control" placeholder="Puntos separados por comas."
+                            required>
+                    </div>
+                    <input type="submit" name="class" class="btn btn-success border-1 border-dark mb-2"
+                        value="Crear Clase">
+                </form>
+            </div>
+            <div class="d-flex flex-column justify-content-evenly grupo-control mt-3">
+                <span class="adm-subt d-flex flex-row justify-content-evenly">Creador de Actividades</span>
+                <form action="/admon" method="post" class="d-flex flex-column justify-content-evenly">
+                    <div class="input-group mb-2 mt-2">
+                        <label class="input-group-text">Curso</label>
+                        <select class="form-select" name="curso" required>
+                            <option value="">Elije un curso</option>
+                            <option value="esp">Español</option>
+                            <option value="mat">Matemáticas</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-2">
+                        <span class="input-group-text">Titulo</span>
+                        <input name='titulo' type="text" class="form-control" placeholder="Titulo de la clase" required>
+                    </div>
+                    <div class="input-group mb-2">
+                        <label class="input-group-text">Tipo de clase</label>
+                        <select class="form-select" name="tipo" required>
+                            <option value="actividad">Actividad</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-2">
+                        <label class="input-group-text">Tipo de actividad</label>
+                        <select class="form-select" name="texto" required>
+                            <option value="">Elije un tipo</option>
+                            <option value="suma">suma</option>
+                            <option value="resta">resta</option>
+                            <option value="comb">combinado</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Instrucciones</span>
+                        <input name='inst' type="text" class="form-control" placeholder="Puntos separados por comas."
+                            required>
+                    </div>
+                    <input type="submit" name="act" class="btn btn-success border-1 border-dark mb-2"
+                        value="Crear actividad">
+                </form>
+            </div>
+            <div class="d-flex flex-column justify-content-evenly grupo-control2 mt-3">
+                <span class="adm-subt adm-subto d-flex flex-row justify-content-evenly">Eliminar clases</span>
+                <form action="/admon" method="post" class="d-flex flex-column justify-content-evenly">
+                    <div class="d-flex flex-row justify-content-evenly">
+                        <div class="d-flex flex-column justify-content-evenly grupo-control2">
+                            <span class="mt-3">Clases de Español</span>
+                            <span class="my-1">Video</span>
+                            <% for(var i=0; i<clist.esp.video.length; i++) {%>
+                                <div class="input-group mb-1">
+                                    <div class="input-group-text"><input required name="id"
+                                            class="form-check-input mt-0" type="radio"
+                                            value="<%= clist.esp.video[i].id %>"></div>
+                                    <div class="input-group-text"><i class="fas fa-video"></i></div>
+                                    <input type="text" class="form-control" value="<%=clist.esp.video[i].titulo %>"
+                                        disabled>
+                                </div>
+                                <% } %>
+                                    <hr>
+                                    <span class="my-1">Audio</span>
+                                    <% for(var i=0; i<clist.esp.audio.length; i++) {%>
+                                        <div class="input-group mb-1">
+                                            <div class="input-group-text"><input required name="id"
+                                                    class="form-check-input mt-0" type="radio"
+                                                    value="<%= clist.esp.audio[i].id %>"></div>
+                                            <div class="input-group-text"><i class="fas fa-volume-up"></i></div>
+                                            <input type="text" class="form-control"
+                                                value="<%=clist.esp.audio[i].titulo %>" disabled>
+                                        </div>
+                                        <% } %>
+                                            <hr>
+                                            <span class="my-1">Imagen</span>
+                                            <% for(var i=0; i<clist.esp.imagen.length; i++) {%>
+                                                <div class="input-group mb-1">
+                                                    <div class="input-group-text"><input required name="id"
+                                                            class="form-check-input mt-0" type="radio"
+                                                            value="<%= clist.esp.imagen[i].id %>"></div>
+                                                    <div class="input-group-text"><i class="fas fa-image"></i></div>
+                                                    <input type="text" class="form-control"
+                                                        value="<%=clist.esp.imagen[i].titulo %>" disabled>
+                                                </div>
+                                                <% } %>
+                                                    <hr>
+                                                    <span class="my-1">Actividad</span>
+                                                    <% for(var i=0; i<clist.esp.act.length; i++) {%>
+                                                        <div class="input-group mb-1">
+                                                            <div class="input-group-text"><input required name="id"
+                                                                    class="form-check-input mt-0" type="radio"
+                                                                    value="<%= clist.esp.act[i].id %>"></div>
+                                                            <div class="input-group-text"><i
+                                                                    class="fas fa-pencil-ruler"></i>
+                                                            </div>
+                                                            <input type="text" class="form-control"
+                                                                value="<%=clist.esp.act[i].titulo %>" disabled>
+                                                        </div>
+                                                        <% } %>
+                                                            <hr>
+                        </div>
+                        <div class="d-flex flex-column justify-content-evenly grupo-control2">
+                            <span class="mt-3">Clases de Matemáticas</span>
+                            <span class="my-1">Video</span>
+                            <% for(var i=0; i<clist.mate.video.length; i++) {%>
+                                <div class="input-group mb-1">
+                                    <div class="input-group-text"><input required name="id"
+                                            class="form-check-input mt-0" type="radio"
+                                            value="<%= clist.mate.video[i].id %>"></div>
+                                    <div class="input-group-text"><i class="fas fa-video"></i></div>
+                                    <input type="text" class="form-control" value="<%=clist.mate.video[i].titulo %>"
+                                        disabled>
+                                </div>
+                                <% } %>
+                                    <hr>
+                                    <span class="my-1">Audio</span>
+                                    <% for(var i=0; i<clist.mate.audio.length; i++) {%>
+                                        <div class="input-group mb-1">
+                                            <div class="input-group-text"><input required name="id"
+                                                    class="form-check-input mt-0" type="radio"
+                                                    value="<%= clist.mate.audio[i].id %>"></div>
+                                            <div class="input-group-text"><i class="fas fa-volume-up"></i></div>
+                                            <input type="text" class="form-control"
+                                                value="<%=clist.mate.audio[i].titulo %>" disabled>
+                                        </div>
+                                        <% } %>
+                                            <hr>
+                                            <span class="my-1">Imagen</span>
+                                            <% for(var i=0; i<clist.mate.imagen.length; i++) {%>
+                                                <div class="input-group mb-1">
+                                                    <div class="input-group-text"><input required name="id"
+                                                            class="form-check-input mt-0" type="radio"
+                                                            value="<%= clist.mate.imagen[i].id %>"></div>
+                                                    <div class="input-group-text"><i class="fas fa-image"></i></div>
+                                                    <input type="text" class="form-control"
+                                                        value="<%=clist.mate.imagen[i].titulo %>" disabled>
+                                                </div>
+                                                <% } %>
+                                                    <hr>
+                                                    <span class="my-1">Actividad</span>
+                                                    <% for(var i=0; i<clist.mate.act.length; i++) {%>
+                                                        <div class="input-group mb-1">
+                                                            <div class="input-group-text"><input required name="id"
+                                                                    class="form-check-input mt-0" type="radio"
+                                                                    value="<%= clist.mate.act[i].id %>"></div>
+                                                            <div class="input-group-text"><i
+                                                                    class="fas fa-pencil-ruler"></i>
+                                                            </div>
+                                                            <input type="text" class="form-control"
+                                                                value="<%=clist.mate.act[i].titulo %>" disabled>
+                                                        </div>
+                                                        <% } %>
+                                                            <hr>
+                        </div>
+                    </div>
+                    <input type="submit" name="elact" class="btn btn-success border-1 border-dark my-2"
+                        value="Eliminar Actividad">
+                </form>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="status" value="<%-status%>">
+</body>

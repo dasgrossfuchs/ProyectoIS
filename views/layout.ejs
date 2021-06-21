@@ -14,6 +14,22 @@
     <link rel="icon" href="/img/icon.png">
 </head>
 <script type='text/javascript'>
+    function carga() {
+        var tc = document.getElementById('TipoClase').value;
+        if (tc === 'actividad') {
+            for (let index = 1; index < 5; index++) {
+                var a = Math.floor(Math.random() * 10) + 1;
+                var b = Math.floor(Math.random() * 10) + 1;
+                document.getElementById(`pri${index}`).value = a;
+                document.getElementById(`seg${index}`).value = b;
+            }
+            document.getElementById('boton-fin').classList.remove("btn-success");
+            document.getElementById('boton-fin').classList.add("btn-secondary");
+            document.getElementById('boton-fin').innerHTML = '<i class="far fa-times-circle"></i> ¡Ya casi!';
+            document.getElementById('boton-fin').disabled = true;
+        }
+
+    }
     function vidStart() {
         document.getElementById('boton-fin').classList.remove("btn-success");
         document.getElementById('boton-fin').classList.add("btn-secondary");
@@ -28,6 +44,19 @@
         document.getElementById('boton-fin').disabled = false;
         document.getElementById('vid').hidden = booly;
         document.getElementById('imy').hidden = !booly;
+        document.getElementById('vid').onerror = null;
+    }
+    function Generar() {
+        for (let index = 1; index < 5; index++) {
+            var a = Math.floor(Math.random() * 10) + 1;
+            var b = Math.floor(Math.random() * 10) + 1;
+            document.getElementById(`pri${index}`).value = a;
+            document.getElementById(`seg${index}`).value = b;
+        }
+        document.getElementById('boton-fin').classList.remove("btn-success");
+        document.getElementById('boton-fin').classList.add("btn-secondary");
+        document.getElementById('boton-fin').text = '¡Ya casi!';
+        document.getElementById('boton-fin').disabled = true;
     }
 </script>
 <style>
@@ -45,6 +74,12 @@
 
 
     #boton-fin:enabled {
+        animation: shake 0.5s;
+        animation-iteration-count: 1;
+    }
+
+    .wrong {
+        background-color: pink !important;
         animation: shake 0.5s;
         animation-iteration-count: 1;
     }
@@ -76,9 +111,25 @@
     .nav-link {
         padding-right: 2rem;
     }
+
+    .contenedor-clase {
+        margin: 1rem 2rem 0.2rem 2rem;
+        padding: 2rem 2rem;
+        background-color: #CEE5D0;
+        /* background-color: #A9E9EF; */
+        /* border: 5px solid #474e45b4; */
+        border-radius: .5rem 5rem;
+        box-shadow: 5px 5px 20px -5px #000000;
+    }
+
+    #boton-fin {
+        margin: .5rem 1rem 1rem 0rem;
+        box-shadow: 5px 5px 20px -5px #000000;
+    }
+</style>
 </style>
 
-<body>
+<body onload="carga()">
     <!-- HEADER CONTENT HERE -->
     <header class="sticky-lg-top">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -97,7 +148,14 @@
                                 Regresar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/bandeja"><i class="fas fa-book"></i> Tus clases</a>
+                            <form action="/bandeja/clases" method="POST">
+                                <input type="hidden" name="name" value="<%=nombre%>">
+                                <input type="hidden" name="user" value="<%=username%>">
+                                <button type="submit" class="nav-link border-0"
+                                    style="background-color: transparent;"><i class="fas fa-book">
+                                    </i> Tus clases</button>
+                            </form>
+                            <!-- <a class="nav-link" href="/bandeja"><i class="fas fa-book"></i> Tus clases</a> -->
                         </li>
                     </ul>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -109,7 +167,9 @@
                     </ul>
                     <ul class="navbar-nav me-0 mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link"><i class="fas fa-user-circle"></i></i> Juan Perez</a>
+                            <a class="nav-link"><i class="fas fa-user-circle"></i>
+                                <%-username%>
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/"><i class="fas fa-power-off"></i> Cerrar sesión</a>
@@ -124,17 +184,35 @@
     <%- defineContent('privado') %>
         <main>
             <div class="contenedor-generico">
-                <%- body %>
-                    <div class="d-flex flex-row-reverse mx-3 mt-2">
-                        <form action="/bandeja" method="POST">
-                            <input type="hidden" name="Clase" value="1">
-                            <input type="hidden" name="Tema" value="2">
-                            <input type="hidden" name="userId" value="1">
-                            <input type="hidden" name="contenido" value="2">
+                <div class="m-0 p-0 d-inline">
+                    <div class="d-inline bodcont">
+                        <div class="contenedor-clase">
+                            <%- body %>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-row-reverse mx-3 mt-2">
+                    <form action="/bandeja/done" method="POST">
+                        <input type="hidden" name="usr" value="<%-username%>">
+                        <input type="hidden" name="name" value="<%-nombre%>">
+                        <input type="hidden" id="TipoClase" name="tipo" value='<%=clase.tipo%>'>
+                        <input type="hidden" id="curso" name="curso" value='<%=clase.curso%>'>
+                        <input type="hidden" name="classId" value="<%=clase._id%>">
+                        <input type="hidden" name="titulo" value="<%=clase.titulo%>">
+                        <div id="btnfin-cont">
                             <button type="submit" class="btn btn-success border-1 border-dark" id="boton-fin"><i
                                     class="far fa-check-circle"></i> ¡Listo!</button>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
+                </div>
+                <script>
+                    if (document.getElementById('TipoClase').value == 'actividad') {
+                        document.getElementById('btnfin-cont').innerHTML = `<button type="submit" 
+                        class="btn btn-secondary border-1 border-dark" id="boton-fin" disabled><i class="far 
+                        fa-times-circle"></i> ¡Ya casi!</button>`;
+                    }
+                </script>
             </div>
         </main>
         <!-- FOOTER CONTENT HERE -->

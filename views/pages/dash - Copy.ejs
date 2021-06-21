@@ -1,0 +1,83 @@
+<body onload="">
+    <div class="pb-5">
+        <table id="myTable" class="table table-striped table-responsive-md btn-table">
+            <thead>
+                <tr>
+                    <th colspan="3">Español</th>
+                    <th colspan="3">Matemáticas</th>
+                </tr>
+                <tr>
+                    <th>ID</th>
+                    <th class="th-sm">Tipo</th>
+                    <th class="th-sm">Titulo</th>
+                    <th>ID</th>
+                    <th class="th-sm">Tipo</th>
+                    <th class="th-sm">Titulo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% var x=pend.esp.length; %>
+                    <% var y=pend.mate.length;%>
+                        <%if (x> y) {var y=x;} %>
+                            <% for(var i=0; i< y; i++) {%>
+                                <tr>
+                                    <%if (i < pend.esp.length) { %>
+                                        <td>
+                                            <%=pend.esp[i].id%>
+                                        </td>
+                                        <td>
+                                            <%=pend.esp[i].tipo%>
+                                        </td>
+                                        <td>
+                                            <%=pend.esp[i].titulo%>
+                                        </td>
+                                        <% } %>
+                                            <%if (i < pend.mate.length) { %>
+                                                <td>
+                                                    <%=pend.mate[i].id%>
+                                                </td>
+                                                <td>
+                                                    <%=pend.mate[i].tipo%>
+                                                </td>
+                                                <td>
+                                                    <%=pend.mate[i].titulo%>
+                                                </td>
+                                                <% } %>
+                                </tr>
+                                <% } %>
+            </tbody>
+            <tbody>
+                <% var x=done.esp.length;%>
+                    <% var y=done.mate.length;%>
+                        <%if (x> y) {var y=x;} %>
+                            <% for(var i=0; i< y; i++) {%>
+                                <tr>
+                                    <%if (i < done.esp.length) { %>
+                                        <td>
+                                            <%=done.esp[i].id%>
+                                        </td>
+                                        <td>
+                                            <%=done.esp[i].tipo%>
+                                        </td>
+                                        <td>
+                                            <%=done.esp[i].titulo%>
+                                        </td>
+                                        <% } %>
+                                            <%if (i < done.mate.length) { %>
+                                                <td>
+                                                    <%=done.mate[i].id%>
+                                                </td>
+                                                <td>
+                                                    <%=done.mate[i].tipo%>
+                                                </td>
+                                                <td>
+                                                    <%=done.mate[i].titulo%>
+                                                </td>
+                                                <% } %>
+                                </tr>
+                                <% } %>
+            </tbody>
+        </table>
+
+    </div>
+</body>

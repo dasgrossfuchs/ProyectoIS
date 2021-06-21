@@ -15,8 +15,9 @@ app.use(express.urlencoded({extended:true}));
 
 //Recursos públicos
 app.use(express.static('public'));
+async function connect(){
 try{
-  mongoose.connect(config.db, config.urlParser, (err,res)=>{
+  await mongoose.connect(config.db, config.urlParser, (err,res)=>{
     if(err){
       console.log(`Error al conectar en la BD ${err}`);
     }
@@ -31,8 +32,8 @@ try{
 catch(e){console.error(e);}
 finally{
 
-}
-
+}}
+connect();
 
 
 //Cargar modulo de routes

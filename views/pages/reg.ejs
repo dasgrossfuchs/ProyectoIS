@@ -1,15 +1,21 @@
 <script>
-    function validar() {
+    function valpwd() {
+        var pwd = document.getElementById('pass').setCustomValidity('');
         var pwd = document.getElementById('pass').value;
         var pwdx = document.getElementById('passc').value;
-        if (pwd == pwdx) {
-            document.getElementById('create').disabled = false;
-            document.getElementById('msg').hidden = true;
-        }
-        else {
+        if (pwd != '' && pwdx != '') {
+            if (pwd == pwdx) {
+                document.getElementById('create').disabled = false;
+                document.getElementById('msg').hidden = true;
+            }
+            else {
+                document.getElementById('create').disabled = true;
+                document.getElementById('msg').innerHTML = 'Las contraseñas no coinciden';
+                document.getElementById('msg').hidden = false;
+            }
+        } else {
             document.getElementById('create').disabled = true;
-            document.getElementById('msg').innerHTML = 'Las contraseñas no coinciden';
-            document.getElementById('msg').hidden = false;
+            document.getElementById('msg').hidden = true;
         }
     }
     function carga() {
@@ -48,13 +54,13 @@
                 <div class="input-group mb-1">
                     <span class="input-group-text"><i class="fas fa-key"></i></span>
                     <input id="pass" name='pwd' type="password" class="form-control" placeholder="Contraseña"
-                        minlength="8" maxlength="16" required oninput="this.setCustomValidity('');"
-                        oninvalid="this.setCustomValidity('Debe ser de entre 8 y 16 caracteres');">
+                        minlength="8" maxlength="16" required oninput="valpwd();"
+                        oninvalid="this.setCustomValidity('Debe ser de entre 8 y 16 caracteres');" oninput="">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text text-secondary"><i class="fas fa-key"></i></span>
                     <input id="passc" type="password" class="form-control" placeholder="Confirmar contraseña"
-                        onkeypress="" oninput="validar()" oninvalid="" required>
+                        onkeypress="" oninput="valpwd();" oninvalid="" required>
                 </div>
                 <input type="submit" class="btn btn-primary btn border-1 border-dark mb-2" id="create"
                     value="Crear cuenta" disabled>

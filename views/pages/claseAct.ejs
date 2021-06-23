@@ -11,7 +11,12 @@
                 var y = parseInt(document.getElementById(`seg${index}${ii}`).value);
                 var resul = parseInt(document.getElementById(`resul${index}${ii}`).value);
                 if (!resul) resul = 0;
-                if (resul === (x + y)) { correctas++; }
+                if (resul === (x + y)) {
+                    correctas++;
+                    setTimeout(() => {
+                        document.getElementById(`ac${index}${ii}`).classList.add("correcto");
+                    }, 500);
+                }
                 else {
                     setTimeout(() => {
                         document.getElementById(`ac${index}${ii}`).classList.add("wrong");
@@ -26,9 +31,13 @@
                 var y = parseInt(document.getElementById(`seg${fullcols + 1}${index}`).value);
                 var resul = parseInt(document.getElementById(`resul${fullcols + 1}${index}`).value);
                 if (!resul) resul = 0;
-                if (resul === (x + y)) { correctas++; }
+                if (resul === (x + y)) {
+                    correctas++;
+                    setTimeout(() => {
+                        document.getElementById(`ac${fullcols + 1}${index}`).classList.add("correcto");
+                    }, 500);
+                }
                 else {
-
                     setTimeout(() => {
                         document.getElementById(`ac${fullcols + 1}${index}`).classList.add("wrong");
                     }, 500);

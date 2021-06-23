@@ -41,5 +41,5 @@ const router= require('./routes/routes.js');
 app.use('/',router);
 
 app.use((req,res)=>{
-  res.status(404).render('pages/sprint1',{layout:'layoutB',title:'Sprint 1'});
+  res.redirect('/');
 });

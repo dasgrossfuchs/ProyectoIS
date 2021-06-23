@@ -7,11 +7,17 @@
         for (let index = 0; index < fullcols; index++) {
             for (let ii = 0; ii < 4; ii++) {
                 document.getElementById(`ac${index}${ii}`).classList.remove("wrong");
+                document.getElementById(`ac${index}${ii}`).classList.remove("correcto");
                 var x = parseInt(document.getElementById(`pri${index}${ii}`).value);
                 var y = parseInt(document.getElementById(`seg${index}${ii}`).value);
                 var resul = parseInt(document.getElementById(`resul${index}${ii}`).value);
                 if (!resul) resul = 0;
-                if (resul === (x - y)) { correctas++; }
+                if (resul === (x - y)) {
+                    correctas++;
+                    setTimeout(() => {
+                        document.getElementById(`ac${index}${ii}`).classList.add("correcto");
+                    }, 500);
+                }
                 else {
                     setTimeout(() => {
                         document.getElementById(`ac${index}${ii}`).classList.add("wrong");
@@ -22,11 +28,17 @@
         if (lastcol != 0) {
             for (let index = 0; index < lastcol; index++) {
                 document.getElementById(`ac${fullcols + 1}${index}`).classList.remove("wrong");
+                document.getElementById(`ac${fullcols + 1}${index}`).classList.remove("correcto");
                 var x = parseInt(document.getElementById(`pri${fullcols + 1}${index}`).value);
                 var y = parseInt(document.getElementById(`seg${fullcols + 1}${index}`).value);
                 var resul = parseInt(document.getElementById(`resul${fullcols + 1}${index}`).value);
                 if (!resul) resul = 0;
-                if (resul === (x - y)) { correctas++; }
+                if (resul === (x - y)) {
+                    correctas++;
+                    setTimeout(() => {
+                        document.getElementById(`ac${fullcols + 1}${index}`).classList.add("correcto");
+                    }, 500);
+                }
                 else {
 
                     setTimeout(() => {
@@ -113,6 +125,8 @@
         margin: 1.5rem;
     }
 
+
+
     .act-contenido input {
         background-color: white;
         border-radius: .5rem .5rem;
@@ -178,7 +192,7 @@
                     for (let index = 0; index < fullcols; index++) {
                         fullgrouphtml += `<div id="ar${index}" class="d-inline-flex flex-row justify-content-evenly">`;
                         for (let ii = 0; ii < 4; ii++) {
-                            var a = Math.floor(Math.random() * 6) + 5;
+                            var a = Math.floor(Math.random() * 5) + 6;
                             var b = Math.floor(Math.random() * 5) + 1;
                             fullgrouphtml += `<div class="act-contenido" id="ac${index}${ii}">
                                 <div class="act-group">
@@ -193,8 +207,8 @@
                     if (lastcol != 0) {
                         fullgrouphtml += `<div id="ar${fullcols + 1}" class="d-inline-flex flex-row justify-content-evenly"> `;
                         for (let index = 0; index < lastcol; index++) {
-                            var a = Math.floor(Math.random() * 10) + 1;
-                            var b = Math.floor(Math.random() * 10) + 1;
+                            var a = Math.floor(Math.random() * 5) + 6;
+                            var b = Math.floor(Math.random() * 4) + 1;
                             fullgrouphtml += `<div class="act-contenido" id="ac${fullcols + 1}${index}">
                                 <div class="act-group">
                                     <span class="d-flex flex-row justify-content-end"><input type="hidden" id="pri${fullcols + 1}${index}" value="${a}"><div>${a}</div></span>

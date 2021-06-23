@@ -84,6 +84,12 @@
         animation-iteration-count: 1;
     }
 
+    .correcto {
+        background-color: #77dd77 !important;
+        animation: shake 0.5s;
+        animation-iteration-count: 1;
+    }
+
     @keyframes shake {
 
         10%,
@@ -126,7 +132,17 @@
         margin: .5rem 1rem 1rem 0rem;
         box-shadow: 5px 5px 20px -5px #000000;
     }
-</style>
+
+    .btn:hover {
+        transform: translate(0.15rem, -.15rem) !important;
+        transition: 0.1s !important;
+        cursor: pointer !important;
+    }
+
+    .btn {
+        box-shadow: 5px 5px 20px -5px #000000;
+        border-radius: .5rem .5rem;
+    }
 </style>
 
 <body onload="carga()">

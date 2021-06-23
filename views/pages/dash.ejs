@@ -1,125 +1,14 @@
 <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        var done = <%= done.esp.length; %>;
-        var tareas = <%= pend.esp.length; %>;
-        google.charts.load("current", { packages: ["corechart"] });
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['prog', 'porc'],
-                ['Por Hacer', tareas],
-                ['Hecho', done]
-            ]);
 
-            var options = {
-                backgroundColor: 'transparent',
-                legend: 'none', tooltip: { trigger: 'none' },
-                pieStartAngle: 330,
-                chartArea: { width: '100%', height: '100%' },
-                slices: {
-                    0: { color: 'AF3E4D' },
-                    1: { color: '63A375' }
-                }
-            };
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-            chart.draw(data, options);
-            var percent = 0;
-            if (done != 0 && tareas != 0) {
-                var handler = setInterval(function () {
-                    if (percent > ((done / (tareas + done) * 100) - 1))
-                        // stop the loop
-                        clearInterval(handler);
-                    // values increment
-                    percent += 1;
-                    // apply new values
-                    data.setValue(0, 1, 100 - percent);
-                    data.setValue(1, 1, percent);
-                    // update the pie
-                    chart.draw(data, options);
-                    // check if we have reached the desired value
-                }, 30);
-            }
-            var percent = 0;
-            if (tareas == 0) {
-                var handler = setInterval(function () {
-                    // values increment
-                    percent += 1;
-                    // apply new values
-                    data.setValue(0, 1, 100 - percent);
-                    data.setValue(1, 1, percent);
-                    // update the pie
-                    chart.draw(data, options);
-                    if (percent > (99))
-                        // stop the loop
-                        clearInterval(handler);
-                    // check if we have reached the desired value
-                }, 30);
-            }
-
-        }
-    </script>
-    <script type="text/javascript">
-        var donem =<%= done.mate.length;  %>;
-        var tareasm = <%= pend.mate.length  %>;
-        google.charts.load("current", { packages: ["corechart"] });
-        google.charts.setOnLoadCallback(drawChart2);
-        function drawChart2() {
-            var data = google.visualization.arrayToDataTable([
-                ['prog', 'porc'],
-                ['Por Hacer', tareasm],
-                ['Hecho', donem]
-            ]);
-
-            var options = {
-                backgroundColor: 'transparent',
-                legend: 'none', tooltip: { trigger: 'none' },
-                pieStartAngle: 330,
-                chartArea: { width: '100%', height: '100%' },
-                slices: {
-                    0: { color: 'AF3E4D' },
-                    1: { color: '63A375' }
-                }
-            };
-
-            var chart = new google.visualization.PieChart(document.getElementById('matepiechart'));
-            chart.draw(data, options);
-            var percent = 0;
-            if (donem != 0 && tareas != 0) {
-                var handler = setInterval(function () {
-                    if (percent > ((donem / (tareasm + donem) * 100) - 1))
-                        // stop the loop
-                        clearInterval(handler);
-                    // values increment
-                    percent += 1;
-                    // apply new values
-                    data.setValue(0, 1, 100 - percent);
-                    data.setValue(1, 1, percent);
-                    // update the pie
-                    chart.draw(data, options);
-                    // check if we have reached the desired value
-                }, 30);
-            }
-            var percent = 0;
-            if (tareasm == 0) {
-                var handler = setInterval(function () {
-                    // values increment
-                    percent += 1;
-                    // apply new values
-                    data.setValue(0, 1, 100 - percent);
-                    data.setValue(1, 1, percent);
-                    // update the pie
-                    chart.draw(data, options);
-                    if (percent > (99))
-                        // stop the loop
-                        clearInterval(handler);
-                    // check if we have reached the desired value
-                }, 30);
-            }
-        }
-    </script>
 </head>
 <style>
+    .woo {
+        background-image: url('/img/confeti.gif');
+        background-size: cover;
+        background-clip: content-box;
+    }
+
     .pic-cont,
     .picture {
         border-radius: 50%;
@@ -238,10 +127,27 @@
         border-radius: 25px;
         box-shadow: 5px 5px 10px -5px #000000;
         max-width: 80vw;
+        transition: 0.1s !important;
     }
 
     .clssbtn-done {
         background-color: #D3E0DC;
+    }
+
+    .clssbtn:hover {
+        background-color: #FFAAA7;
+    }
+
+    .clssbtn-done:hover {
+        background-color: #98DDCA;
+    }
+
+    .clssbtn-done:hover,
+    .clssbtn:hover {
+        color: black;
+        transform: translate(0.25rem, -.25rem) !important;
+        transition: 0.1s !important;
+        cursor: pointer !important;
     }
 </style>
 
@@ -261,13 +167,13 @@
             <div class="esp-30"></div>
             <div class="graphs d-inline-flex flex-row justify-content-md-end flex-wrap wrapper">
                 <div class="ccont d-inline-flex flex-column justify-content-md-center">
-                    <div class="chart">
+                    <div class="chart position-relative">
                         <div id="piechart"></div>
                     </div>
                     <span class="pietext" id="prueba">Español</span>
                 </div>
                 <div class="ccont d-inline-flex flex-column justify-content-md-center">
-                    <div class="chart">
+                    <div class="chart position-relative">
                         <div id="matepiechart"></div>
                     </div>
                     <span class="pietext">Matemáticas</span>
@@ -302,7 +208,8 @@
                                             <% if(pend.esp[i].tipo=='actividad' ) x='fa-pencil-ruler' ; %>
                                                 <form action="/clase/<%=pend.esp[i].tipo%>" method="POST">
                                                     <button class="btn btn-outline-primary clssbtn mb-2 text-wrap"><i
-                                                            class="fas <%= x %>"> </i>
+                                                            class="fas <%= x %>">
+                                                        </i>
                                                         <%=pend.esp[i].titulo%>
                                                     </button>
                                                     <input type="hidden" name="name" value="<%=nombre%>">
@@ -345,7 +252,7 @@
                                 </button>
                             </form> -->
                     </div>
-                    <div class="ms-5 d-flex flex-column justify-content-start">
+                    <div class="ms-5 d-inline-flex flex-column justify-content-start" id="matclass">
                         <!-- Mate por hacer -->
                         <!-- <form action="/clase/video" method="POST">
                             <button class="btn btn-outline-primary clssbtn mb-2"><i class="fas fa-video"> </i>
@@ -413,3 +320,132 @@
         </div>
     </div>
 </div>
+
+<input type="hidden" id="mate-pend" value="<%=pend.mate.length%>">
+<input type="hidden" id="mate-hecho" value="<%=done.mate.length%>">
+<input type="hidden" id="esp-pend" value="<%=pend.esp.length%>">
+<input type="hidden" id="esp-hecho" value="<%=done.esp.length%>">
+<script type="text/javascript">
+    let timetable = [12, 15, 20];
+    var done = parseInt(document.getElementById('esp-hecho').value);
+    var tareas = parseInt(document.getElementById('esp-pend').value);
+    var donem = parseInt(document.getElementById('mate-hecho').value);
+    var tareasm = parseInt(document.getElementById('mate-pend').value);
+    // var done = <%= done.esp.length; %>;
+    // var tareas = <%= pend.esp.length; %>;
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['prog', 'porc'],
+            ['Por Hacer', tareas],
+            ['Hecho', done]
+        ]);
+
+        var options = {
+            backgroundColor: 'transparent',
+            legend: 'none',
+            pieSliceText: 'none',
+            tooltip: { trigger: 'none' },
+            pieStartAngle: 330,
+            chartArea: { width: '100%', height: '100%' },
+            slices: {
+                0: { color: 'AF3E4D' },
+                1: { color: '63A375' }
+            }
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+        var percent = 0;
+        if (done != 0 && tareas != 0) {
+            var handler = setInterval(function () {
+                if (percent > ((done / (tareas + done) * 100) - 1))
+                    // stop the loop
+                    clearInterval(handler);
+                // values increment
+                percent += 1;
+                // apply new values
+                data.setValue(0, 1, 100 - percent);
+                data.setValue(1, 1, percent);
+                // update the pie
+                chart.draw(data, options);
+                // check if we have reached the desired value
+            }, timetable[Math.floor(Math.random() * 3)]);
+        }
+        var percent = 0;
+        if (tareas == 0) {
+            var handler = setInterval(function () {
+                // values increment
+                percent += 1;
+                // apply new values
+                data.setValue(0, 1, 100 - percent);
+                data.setValue(1, 1, percent);
+                // update the pie
+                chart.draw(data, options);
+                if (percent > (99))
+                    // stop the loop
+                    clearInterval(handler);
+                // check if we have reached the desired value
+            }, timetable[Math.floor(Math.random() * 3)]);
+
+        }
+
+    }
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(drawChart2);
+    function drawChart2() {
+        var data = google.visualization.arrayToDataTable([
+            ['prog', 'porc'],
+            ['Por Hacer', tareasm],
+            ['Hecho', donem]
+        ]);
+
+        var options = {
+            backgroundColor: 'transparent',
+            legend: 'none',
+            pieSliceText: 'none',
+            tooltip: { trigger: 'none' },
+            pieStartAngle: 330,
+            chartArea: { width: '100%', height: '100%' },
+            slices: {
+                0: { color: 'AF3E4D' },
+                1: { color: '63A375' }
+            }
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('matepiechart'));
+        chart.draw(data, options);
+        var percent = 0;
+        if (donem != 0 && tareasm != 0) {
+            var handler = setInterval(function () {
+                if (percent > ((donem / (tareasm + donem) * 100) - 1))
+                    // stop the loop
+                    clearInterval(handler);
+                // values increment
+                percent += 1;
+                // apply new values
+                data.setValue(0, 1, 100 - percent);
+                data.setValue(1, 1, percent);
+                // update the pie
+                chart.draw(data, options);
+                // check if we have reached the desired value
+            }, timetable[Math.floor(Math.random() * 3)]);
+        }
+        var percent = 0;
+        if (tareasm == 0) {
+            var handler = setInterval(function () {
+                // values increment
+                percent += 1;
+                // apply new values
+                data.setValue(0, 1, 100 - percent);
+                data.setValue(1, 1, percent);
+                // update the pie
+                chart.draw(data, options);
+                if (percent > (99))
+                    // stop the loop
+                    clearInterval(handler);
+                // check if we have reached the desired value
+            }, timetable[Math.floor(Math.random() * 3)]);
+        }
+    }
+</script>

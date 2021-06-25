@@ -7,8 +7,8 @@ const port = process.env.PORT || 8080;
 const app = express();
 
 //Motor de vistas EJS
-app.use(ejsLayouts);
 const expressLayouts = require("express-ejs-layouts");
+app.use(ejsLayouts);
 app.use(expressLayouts);
 app.set('view engine','ejs');
 

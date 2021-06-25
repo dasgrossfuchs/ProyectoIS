@@ -166,7 +166,7 @@ function getMyDash(req, res) {
         });
         if (!resultado || !resultado[0]) {
             res.render('pages/dash', {
-                layout: 'layoutC',
+                layout: 'LayoutC',
                 title: 'Tus Clases',
                 pend: clist,
                 done: proglist,
@@ -192,7 +192,7 @@ function getMyDash(req, res) {
                 });
                 if (!petres || !(petres.length != 0) || !petres[0]) {
                     res.render('pages/dash', {
-                        layout: 'layoutC',
+                        layout: 'LayoutC',
                         title: 'Mis Clases',
                         pend: clist,
                         done: proglist,
@@ -253,7 +253,7 @@ function getMyDash(req, res) {
                         finlist.mate = clist.mate;
                     }
                     res.render('pages/dash', {
-                        layout: 'layoutC',
+                        layout: 'LayoutC',
                         title: 'Tus Clases',
                         pend: finlist,
                         done: proglist,

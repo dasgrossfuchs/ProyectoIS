@@ -8,11 +8,11 @@ const app = express();
 
 //Motor de vistas EJS
 const path = require('path');
-app.set('views', path.join(__dirname, './Views'));
 const expressLayouts = require("express-ejs-layouts");
 app.use(ejsLayouts);
 app.use(expressLayouts);
 app.set('view engine','ejs');
+app.set('views', path.join(__dirname, './views'));
 
 
 //uso del bodyParser

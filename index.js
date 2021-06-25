@@ -12,7 +12,7 @@ const expressLayouts = require("express-ejs-layouts");
 app.use(ejsLayouts);
 app.use(expressLayouts);
 app.set('view engine','ejs');
-app.set('views', path.join(__dirname, './views'));
+// app.set('views', path.join(__dirname, './views'));
 
 
 //uso del bodyParser

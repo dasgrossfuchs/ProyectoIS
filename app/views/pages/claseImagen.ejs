@@ -1,0 +1,120 @@
+<script type='text/javascript'>
+    function imgLoad() {
+        document.getElementById('imy').hidden = true;
+        document.getElementById('imy2').hidden = false;
+    }
+</script>
+<style>
+    .titulo-contenido,
+    .titulo-material {
+        font-size: 1.5rem;
+        color: #24277F;
+        font-weight: 600;
+    }
+
+    .inst {
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
+
+    .inst-lista {
+        color: transparent;
+        max-width: 15rem;
+    }
+
+    .inst-contenido {
+        font-family: Arial, Helvetica, sans-serif;
+        color: black;
+        margin-left: -1.1rem;
+    }
+
+    .text-contenido {
+        color: black;
+        font-size: 1.1rem;
+        max-width: 25rem;
+        text-align: justify;
+    }
+
+    .material {
+        max-width: 30rem;
+        height: auto;
+    }
+
+    .material-imagen img {
+        display: cover;
+        max-width: 100%;
+        height: auto;
+        max-height: 15rem;
+        border-radius: 15px;
+        box-shadow: 5px 5px 20px -5px #000000;
+    }
+</style>
+<div class="w-100 h-100 d-inline-flex flex-row flex-wrap justify-content-evenly">
+    <div class=" h-100 d-inline-flex flex-column flex-wrap justify-content-evenly">
+        <span class="titulo-contenido d-flex flex-wrap">
+            <%- clase.titulo %>
+        </span>
+        <div><span class="inst">Instrucciones:</span>
+            <ul class="inst-lista">
+                <% for(var i=0; i< clase.inst.length; i++) {%>
+                    <li class="w-100 text-wrap">
+                        <div class=" inst-contenido">
+                            <i class="far fa-hand-point-right"></i>
+                            <%=clase.inst[i]%>
+                        </div>
+                    </li>
+                    <%}%>
+            </ul>
+        </div>
+        <div class="text-contenido pe-5">
+            <%-clase.texto%>
+        </div>
+    </div>
+    <div class="d-inline-flex flex-column flex-wrap justify-content-start">
+        <span class="titulo-material d-flex flex-wrap">
+            <%- clase.matname %>
+        </span>
+        <div class="material material-imagen" id="imagebody">
+            <img id="imy" alt='<%=clase.material%>' src="/img/<%=clase.material%>.png"
+                onerror="this.onerror = null; this.src='/img/404.png';">
+        </div>
+        <script>
+            function validURL(str) {
+                var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
+                    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+                    '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+                    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+                    '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+                    '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+                return !!pattern.test(str);
+            }
+            if (validURL('<%=clase.material %>')) {
+                document.getElementById('imagebody').innerHTML = `<img id="imy" alt='<%=clase.material%>' src="<%=clase.material%>"
+                    onerror="this.onerror = null; this.src='/img/404.png';">`
+            }
+        </script>
+        <div class="text-contenido d-flex flex-wrap">
+            <!-- algo mas -->
+        </div>
+    </div>
+</div>
+<!-- <div class="contenido-gral  d-flex flex-wrap">
+    <div class="d-flex texto-mmedia contenido-mmedia flex-wrap">
+        <div class="inst"><span>Instrucciones:</span>
+            <ul class="inst-lista">
+                <li>Lee el texto y ve el video!</li>
+            </ul>
+        </div>
+        <span class="titulo-contenido">
+            <%- clase.titulo %>
+        </span>
+        <%-clase.texto%>
+    </div>
+    <div class="d-flex flex-column justify-content-center contenido-video contenido-mmedia">
+        <legend class="d-flex flex-wrap">
+            <%- clase.matname%>
+        </legend>
+        <img id="imy" src="/img/<%=clase.material%>" onerror="imgLoad()">
+        <img id="imy2" src="https://placekitten.com/350/200" hidden>
+    </div>
+</div> -->

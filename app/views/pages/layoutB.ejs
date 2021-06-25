@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Este layout es para contenido  de la clase-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <%- title%>
+    </title>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/4f3c6f3a48.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" href="/img/icon.png">
+</head>
+<script type='text/javascript'>
+    function carga() {
+        var error = document.getElementById('error').value;
+        if (error === 'userexist') {
+            document.getElementById('msg').innerHTML = 'El nombre de usuario ya existe';
+            document.getElementById('msg').hidden = false;
+        }
+
+    }
+</script>
+<style>
+    .contenedor-generico {
+        background-color: #A9D8DAe3;
+        border: 5px solid #C2F9BB;
+        border-radius: 15px;
+        margin-inline: 10%;
+        margin-top: 50px;
+        width: 80%;
+        padding-top: 2rem;
+        padding-bottom: 10px;
+        padding: .2rem;
+    }
+
+
+    #boton-fin:enabled {
+        animation: shake 0.5s;
+        animation-iteration-count: 1;
+    }
+
+    @keyframes shake {
+
+        10%,
+        90% {
+            transform: translate(-1px, 0, );
+        }
+
+        20%,
+        80% {
+            transform: translate(2px, 0);
+        }
+
+        30%,
+        50%,
+        70% {
+            transform: translate(-4px, 0);
+        }
+
+        40%,
+        60% {
+            transform: translate(4px, 0);
+        }
+    }
+
+    .nav-link {
+        padding-right: 2rem;
+    }
+</style>
+
+<body onload="carga()">
+    <!-- HEADER CONTENT HERE -->
+    <header class="sticky-lg-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <img src="/img/icon.png" alt="" width="25" height="25"> Fury Knowledge</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <span class="navbar-text">
+                                ¡Bienvenido a una nueva experiencia!
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- MAIN CONTENT HERE -->
+
+    <%- defineContent('privado') %>
+        <main>
+            <div class="contenedor-generico d-flex justify-content-center">
+                <div class="m-0 p-0 d-flex justify-content-center p-3">
+                    <%- body %>
+                </div>
+            </div>
+        </main>
+        <!-- FOOTER CONTENT HERE -->
+        <footer>
+            Fury Night Developers. &copy;
+        </footer>
+
+</body>
+
+</html>

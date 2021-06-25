@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Este layout es para contenido sin boton de seguir-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <%- title%>
+    </title>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/4f3c6f3a48.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" href="/img/icon.png">
+</head>
+<script type='text/javascript'>
+    function carga() {
+        var tc = document.getElementById('TipoClase').value;
+        if (tc === 'actividad') {
+            for (let index = 1; index < 5; index++) {
+                var a = Math.floor(Math.random() * 10) + 1;
+                var b = Math.floor(Math.random() * 10) + 1;
+                document.getElementById(`pri${index}`).value = a;
+                document.getElementById(`seg${index}`).value = b;
+            }
+            document.getElementById('boton-fin').classList.remove("btn-success");
+            document.getElementById('boton-fin').classList.add("btn-secondary");
+            document.getElementById('boton-fin').innerHTML = '<i class="far fa-times-circle"></i> ¡Ya casi!';
+            document.getElementById('boton-fin').disabled = true;
+        }
+        //hello
+    }
+    function vidStart() {
+        document.getElementById('boton-fin').classList.remove("btn-success");
+        document.getElementById('boton-fin').classList.add("btn-secondary");
+        document.getElementById('boton-fin').innerHTML = '<i class="far fa-times-circle"></i> ¡Ya casi!';
+        document.getElementById('boton-fin').text = '¡Ya casi!';
+        document.getElementById('boton-fin').disabled = true;
+    }
+    function vidEnd(booly) {
+        document.getElementById('boton-fin').classList.remove("btn-secondary");
+        document.getElementById('boton-fin').classList.add("btn-success");
+        document.getElementById('boton-fin').innerHTML = '<i class="far fa-check-circle"></i>  ¡Listo!';
+        document.getElementById('boton-fin').disabled = false;
+        document.getElementById('vid').hidden = booly;
+        document.getElementById('imy').hidden = !booly;
+    }
+    function Generar() {
+        for (let index = 1; index < 5; index++) {
+            var a = Math.floor(Math.random() * 10) + 1;
+            var b = Math.floor(Math.random() * 10) + 1;
+            document.getElementById(`pri${index}`).value = a;
+            document.getElementById(`seg${index}`).value = b;
+        }
+        document.getElementById('boton-fin').classList.remove("btn-success");
+        document.getElementById('boton-fin').classList.add("btn-secondary");
+        document.getElementById('boton-fin').text = '¡Ya casi!';
+        document.getElementById('boton-fin').disabled = true;
+    }
+</script>
+<style>
+    .contenedor-generico {
+        background-color: #A9D8DAe3;
+        border: 5px solid #C2F9BB;
+        border-radius: 15px;
+        margin-inline: 10%;
+        margin-top: 50px;
+        width: 80%;
+        padding-top: 2rem;
+        padding-bottom: 10px;
+        padding: .2rem;
+    }
+
+
+    #boton-fin:enabled {
+        animation: shake 0.5s;
+        animation-iteration-count: 1;
+    }
+
+    @keyframes shake {
+
+        10%,
+        90% {
+            transform: translate(-1px, 0, );
+        }
+
+        20%,
+        80% {
+            transform: translate(2px, 0);
+        }
+
+        30%,
+        50%,
+        70% {
+            transform: translate(-4px, 0);
+        }
+
+        40%,
+        60% {
+            transform: translate(4px, 0);
+        }
+    }
+
+    .nav-link {
+        padding-right: 2rem;
+    }
+</style>
+
+<body onload="carga()">
+    <!-- HEADER CONTENT HERE -->
+    <header class="sticky-lg-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <img src="/img/icon.png" alt="" width="25" height="25"> Fury Knowledge</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="window.history.back()"><i
+                                    class="fas fa-chevron-circle-left"></i>
+                                Regresar</a>
+                        </li>
+                        <li class="nav-item">
+                            <form action="/bandeja/clases" method="POST">
+                                <input type="hidden" name="name" value="<%-nombre%>">
+                                <input type="hidden" name="user" value="<%-username%>">
+                                <button type="submit" class="nav-link border-0"
+                                    style="background-color: transparent;"><i class="fas fa-book">
+                                    </i> Tus clases</button>
+                            </form>
+                            <!-- <a class="nav-link" href="/bandeja"><i class="fas fa-book"></i> Tus clases</a> -->
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <span class="navbar-text">
+                                Estas viendo: <%-title%>
+                            </span>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-0 mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link"><i class="fas fa-user-circle"></i></i>
+                                <%-username%>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/"><i class="fas fa-power-off"></i> Cerrar sesión</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- MAIN CONTENT HERE -->
+
+    <%- defineContent('privado') %>
+        <main>
+            <div class="contenedor-generico">
+                <div class="m-0 p-0 d-inline">
+                    <div class="d-inline bodcont">
+                        <%- body %>
+                    </div>
+                </div>
+                <div class="d-flex flex-row-reverse mx-3 mt-2">
+                    <form action="/bandeja" method="POST">
+                        <input type="hidden" id="TipoClase" value=''>
+                        <input type="hidden" name="Clase" value="1">
+                        <input type="hidden" name="Tema" value="2">
+                        <input type="hidden" name="userId" value="1">
+                        <input type="hidden" name="contenido" value="2">
+                        <button hidden type="submit" class="btn btn-success border-1 border-dark" id="boton-fin"><i
+                                class="far fa-check-circle"></i> ¡Listo!</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+        <!-- FOOTER CONTENT HERE -->
+        <footer>
+            Fury Night Developers. &copy;
+        </footer>
+
+</body>
+
+</html>

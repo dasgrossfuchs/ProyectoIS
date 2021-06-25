@@ -4,12 +4,12 @@ const {
     Console
 } = require('console');
 const express = require('express');
+const router = express.Router();
 const expressLayouts = require("express-ejs-layouts");
 const {
     request
 } = require('https');
 const path = require('path');
-const router = express.Router();
 const Alumno = require('../models/alumno');
 const Clase = require('../models/clase');
 const Progreso = require('../models/progreso');

@@ -1,0 +1,451 @@
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+</head>
+<style>
+    .woo {
+        background-image: url('/img/confeti.gif');
+        background-size: cover;
+        background-clip: content-box;
+    }
+
+    .pic-cont,
+    .picture {
+        border-radius: 50%;
+    }
+
+    .usrdata {
+        font-size: 2.5rem;
+        color: #24277F;
+
+    }
+
+    .picture {
+        /* height: 20vh; */
+        background-image: url('https://placekitten.com/200/200');
+        /* background-image: url('https://picsum.photos/200/200'); */
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 10rem;
+        width: 10rem;
+        /* border: 0.5vh solid black; */
+        box-shadow: inset 0px 0px 1rem .5rem black, 5px 5px 20px -5px #000000;
+    }
+
+    .graphs {
+        background-color: #A9E9EF;
+        /* border: 3px solid cornsilk; */
+        border-radius: 15px;
+        padding: 5px;
+        max-height: 10rem;
+    }
+
+    .chart {
+        border-radius: 50%;
+        margin-inline: 1rem;
+        background-color: rgba(0, 0, 0, 0);
+        height: 7rem;
+        width: 7rem;
+        box-shadow: 5px 5px 10px -5px #000000;
+    }
+
+    .ccont {
+        width: 9rem;
+    }
+
+    .chart div {
+        position: inherit;
+        height: inherit;
+        width: inherit;
+    }
+
+    .pietext {
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 0.5rem;
+        color: #262a2e;
+        font-weight: bolder;
+        font-size: 1.3rem;
+
+        text-shadow: 1px 0px 15px #00000050;
+    }
+
+    .ticl {
+        font-family: sans-serif;
+        margin: 0.5rem 0rem 0.5rem 0rem;
+        color: #262a2e;
+        font-weight: 900;
+        font-size: 1.3rem;
+        text-shadow: 1px 0px 15px #00000050;
+    }
+
+    .header {
+        margin: 1rem 2rem 0.2rem 2rem;
+        padding: 1rem 0rem;
+        /* background-color: #CEE5D0; */
+        background-color: #A9E9EF;
+        /* border: 5px solid #474e45b4; */
+        border-radius: 5rem .5rem;
+        box-shadow: 5px 5px 20px -5px #000000;
+    }
+
+    .clases-header {
+        margin: 0rem 2rem .2rem 2rem;
+        padding: .75rem 0rem;
+        background-color: #9cd1e8;
+        border-radius: 0.5rem 5rem;
+        box-shadow: 5px 5px 20px -5px #000000;
+
+    }
+
+    .clases {
+        margin: 0rem 2rem 0rem 2rem;
+        padding: .75rem 0rem;
+        background-color: #7fd1e0;
+        border-radius: 5rem .5rem;
+        box-shadow: 5px 5px 20px -5px #000000;
+        max-width: 100%;
+    }
+
+    .clases>div,
+    .clases>div>div {
+        max-width: 90vw;
+    }
+
+    .clssbtn,
+    .clssbtn-done {
+        width: 20rem;
+        color: rgb(44, 44, 44);
+        font-weight: bold;
+        margin: 0.1rem 0rem 0.1rem 0rem;
+        padding: .75rem 1rem;
+        border-width: 0px;
+        /* background-color: #E4BAD4; */
+        background-color: #f1bfb1;
+        border-radius: 25px;
+        box-shadow: 5px 5px 10px -5px #000000;
+        max-width: 80vw;
+        transition: 0.1s !important;
+    }
+
+    .clssbtn-done {
+        background-color: #D3E0DC;
+    }
+
+    .clssbtn:hover {
+        background-color: #FFAAA7;
+    }
+
+    .clssbtn-done:hover {
+        background-color: #98DDCA;
+    }
+
+    .clssbtn-done:hover,
+    .clssbtn:hover {
+        color: black;
+        transform: translate(0.25rem, -.25rem) !important;
+        transition: 0.1s !important;
+        cursor: pointer !important;
+    }
+</style>
+
+<div class="d-lg-inline">
+    <div class="d-flex flex-column justify-content-center">
+        <div class="header d-flex flex-row flex-wrap justify-content-evenly">
+            <div class="d-flex flex-row flex-wrap justify-content-evenly">
+                <div id="usrpic" class="pic-cont">
+                    <div class="picture"></div>
+                </div>
+                <div class="usrdata d-inline-flex flex-column justify-content-center flex-wrap mx-3">
+                    <span>
+                        <%= nombre%>
+                    </span>
+                </div>
+            </div>
+            <div class="esp-30"></div>
+            <div class="graphs d-inline-flex flex-row justify-content-md-end flex-wrap wrapper">
+                <div class="ccont d-inline-flex flex-column justify-content-md-center">
+                    <div class="chart position-relative">
+                        <div id="piechart"></div>
+                    </div>
+                    <span class="pietext" id="prueba">Español</span>
+                </div>
+                <div class="ccont d-inline-flex flex-column justify-content-md-center">
+                    <div class="chart position-relative">
+                        <div id="matepiechart"></div>
+                    </div>
+                    <span class="pietext">Matemáticas</span>
+                </div>
+            </div>
+        </div>
+        <div class="clssgencont">
+            <div class="clases-header">
+                <div class="d-flex flex-row flex-wrap justify-content-evenly text-center">
+                    <span class="me-5 pe-3 ticl">Español</span>
+                    <span class="ms-5 ps-5 ticl">Matemáticas</span>
+                </div>
+            </div>
+            <div class="clases">
+                <div class="d-flex flex-inline-row justify-content-evenly flex-wrap w-100 h-100">
+                    <div class="me-5 d-inline-flex flex-column justify-content-start">
+                        <!-- Español por hacer -->
+                        <!-- <form action="/clase/video" method="POST">
+                            <button class="btn btn-outline-primary clssbtn mb-2"><i class="fas fa-video"> </i>
+                                <input type="hidden" name="name"
+                                                                        value="<%=nombre%>">
+                                                                        <input type="hidden" name="user" value="<%=username%>">
+                                <input type="hidden" name="classId" value="id de la clase">
+                                Titulo de la clase
+                            </button>
+                        </form> -->
+                        <% for(var i=0; i< pend.esp.length; i++) {%>
+                            <% var x='fa-video' ;%>
+                                <% if(pend.esp[i].tipo=='video' ) x='fa-video' ; %>
+                                    <% if(pend.esp[i].tipo=='audio' ) x='fa-volume-up' ; %>
+                                        <% if(pend.esp[i].tipo=='imagen' ) x='fa-image' ; %>
+                                            <% if(pend.esp[i].tipo=='actividad' ) x='fa-pencil-ruler' ; %>
+                                                <form action="/clase/<%=pend.esp[i].tipo%>" method="POST">
+                                                    <button class="btn btn-outline-primary clssbtn mb-2 text-wrap"><i
+                                                            class="fas <%= x %>">
+                                                        </i>
+                                                        <%=pend.esp[i].titulo%>
+                                                    </button>
+                                                    <input type="hidden" name="name" value="<%=nombre%>">
+                                                    <input type="hidden" name="user" value="<%=username%>">
+                                                    <input type="hidden" name="classId" value="<%=pend.esp[i].id%>">
+                                                    <input type="hidden" name="curso" value="esp">
+                                                </form>
+                                                <% } %>
+                                                    <!-- Español hecho -->
+                                                    <% for(var i=0; i< done.esp.length; i++) {%>
+                                                        <% var x='fa-video' ;%>
+                                                            <% if(done.esp[i].tipo=='video' ) x='fa-video' ; %>
+                                                                <% if(done.esp[i].tipo=='audio' ) x='fa-volume-up' ; %>
+                                                                    <% if(done.esp[i].tipo=='imagen' ) x='fa-image' ; %>
+                                                                        <% if(done.esp[i].tipo=='actividad' )
+                                                                            x='fa-pencil-ruler' ; %>
+                                                                            <form action="/clase/<%=done.esp[i].tipo%>"
+                                                                                method="POST">
+                                                                                <button
+                                                                                    class="btn btn-outline-primary clssbtn-done mb-2  text-wrap"><i
+                                                                                        class="fas <%= x %>">
+                                                                                    </i>
+                                                                                    <%=done.esp[i].titulo%>
+                                                                                </button>
+                                                                                <input type="hidden" name="user"
+                                                                                    value="<%=username%>">
+                                                                                <input type="hidden" name="classId"
+                                                                                    value="<%=done.esp[i].id%>">
+                                                                                <input type="hidden" name="curso"
+                                                                                    value="esp">
+                                                                            </form>
+                                                                            <% } %>
+                                                                                <!-- <form action="/clase/video" method="POST">
+                                <button class="btn btn-outline-primary clssbtn-done mb-2"><i class="fas fa-video"> </i>
+                                    <input type="hidden" name="name"
+                                                                        value="<%=nombre%>">
+                                                                        <input type="hidden" name="user" value="<%=username%>">
+                                    <input type="hidden" name="classId" value="id de la clase">
+                                    Titulo de la clase
+                                </button>
+                            </form> -->
+                    </div>
+                    <div class="ms-5 d-inline-flex flex-column justify-content-start" id="matclass">
+                        <!-- Mate por hacer -->
+                        <!-- <form action="/clase/video" method="POST">
+                            <button class="btn btn-outline-primary clssbtn mb-2"><i class="fas fa-video"> </i>
+                                <input type="hidden" name="name"
+                                                                        value="<%=nombre%>">
+                                                                        <input type="hidden" name="user" value="<%=username%>">
+                                <input type="hidden" name="classId" value="id de la clase">
+                                Titulo de la clase
+                            </button>
+                        </form> -->
+                        <% for(var i=0; i< pend.mate.length; i++) {%>
+                            <% var x='fa-video' ;%>
+                                <% if(pend.mate[i].tipo=='video' ) x='fa-video' ; %>
+                                    <% if(pend.mate[i].tipo=='audio' ) x='fa-volume-up' ; %>
+                                        <% if(pend.mate[i].tipo=='imagen' ) x='fa-image' ; %>
+                                            <% if(pend.mate[i].tipo=='actividad' ) x='fa-pencil-ruler' ; %>
+                                                <form action="/clase/<%=pend.mate[i].tipo%>" method="POST">
+                                                    <button class="btn btn-outline-primary clssbtn mb-2  text-wrap"><i
+                                                            class="fas <%= x %>"> </i>
+                                                        <%=pend.mate[i].titulo%>
+                                                    </button>
+                                                    <input type="hidden" name="name" value="<%=nombre%>">
+                                                    <input type="hidden" name="user" value="<%=username%>">
+                                                    <input type="hidden" name="classId" value="<%=pend.mate[i].id%>">
+                                                    <input type="hidden" name="curso" value="mat">
+                                                </form>
+                                                <% } %>
+                                                    <!-- Mate hecho -->
+                                                    <% for(var i=0; i< done.mate.length; i++) {%>
+                                                        <% var x='fa-video' ;%>
+                                                            <% if(done.mate[i].tipo=='video' ) x='fa-video' ; %>
+                                                                <% if(done.mate[i].tipo=='audio' ) x='fa-volume-up' ; %>
+                                                                    <% if(done.mate[i].tipo=='imagen' ) x='fa-image' ;
+                                                                        %>
+                                                                        <% if(done.mate[i].tipo=='actividad' )
+                                                                            x='fa-pencil-ruler' ; %>
+                                                                            <form action="/clase/<%=done.mate[i].tipo%>"
+                                                                                method="POST">
+                                                                                <button
+                                                                                    class="btn btn-outline-primary clssbtn-done mb-2 text-wrap"><i
+                                                                                        class="fas <%= x %>">
+                                                                                    </i>
+                                                                                    <%=done.mate[i].titulo%>
+                                                                                </button>
+                                                                                <input type="hidden" name="user"
+                                                                                    value="<%=username%>">
+                                                                                <input type="hidden" name="classId"
+                                                                                    value="<%=done.mate[i].id%>">
+                                                                                <input type="hidden" name="curso"
+                                                                                    value="mat">
+                                                                            </form>
+                                                                            <% } %>
+                                                                                <!-- <form action="/clase/video" method="POST">
+                            <button class="btn btn-outline-primary clssbtn-done mb-2"><i class="fas fa-video"> </i>
+                                <input type="hidden" name="name"
+                                                                        value="<%=nombre%>">
+                                                                        <input type="hidden" name="user" value="<%=username%>">
+                                <input type="hidden" name="classId" value="id de la clase">
+                                Titulo de la clase
+                            </button>
+                        </form> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="mate-pend" value="<%=pend.mate.length%>">
+<input type="hidden" id="mate-hecho" value="<%=done.mate.length%>">
+<input type="hidden" id="esp-pend" value="<%=pend.esp.length%>">
+<input type="hidden" id="esp-hecho" value="<%=done.esp.length%>">
+<script type="text/javascript">
+    let timetable = [12, 15, 20];
+    var done = parseInt(document.getElementById('esp-hecho').value);
+    var tareas = parseInt(document.getElementById('esp-pend').value);
+    var donem = parseInt(document.getElementById('mate-hecho').value);
+    var tareasm = parseInt(document.getElementById('mate-pend').value);
+    // var done = <%= done.esp.length; %>;
+    // var tareas = <%= pend.esp.length; %>;
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['prog', 'porc'],
+            ['Por Hacer', tareas],
+            ['Hecho', done]
+        ]);
+
+        var options = {
+            backgroundColor: 'transparent',
+            legend: 'none',
+            pieSliceText: 'none',
+            tooltip: { trigger: 'none' },
+            pieStartAngle: 330,
+            chartArea: { width: '100%', height: '100%' },
+            slices: {
+                0: { color: 'AF3E4D' },
+                1: { color: '63A375' }
+            }
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+        var percent = 0;
+        if (done != 0 && tareas != 0) {
+            var handler = setInterval(function () {
+                if (percent > ((done / (tareas + done) * 100) - 1))
+                    // stop the loop
+                    clearInterval(handler);
+                // values increment
+                percent += 1;
+                // apply new values
+                data.setValue(0, 1, 100 - percent);
+                data.setValue(1, 1, percent);
+                // update the pie
+                chart.draw(data, options);
+                // check if we have reached the desired value
+            }, timetable[Math.floor(Math.random() * 3)]);
+        }
+        var percent = 0;
+        if (tareas == 0) {
+            var handler = setInterval(function () {
+                // values increment
+                percent += 1;
+                // apply new values
+                data.setValue(0, 1, 100 - percent);
+                data.setValue(1, 1, percent);
+                // update the pie
+                chart.draw(data, options);
+                if (percent > (99))
+                    // stop the loop
+                    clearInterval(handler);
+                // check if we have reached the desired value
+            }, timetable[Math.floor(Math.random() * 3)]);
+
+        }
+
+    }
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(drawChart2);
+    function drawChart2() {
+        var data = google.visualization.arrayToDataTable([
+            ['prog', 'porc'],
+            ['Por Hacer', tareasm],
+            ['Hecho', donem]
+        ]);
+
+        var options = {
+            backgroundColor: 'transparent',
+            legend: 'none',
+            pieSliceText: 'none',
+            tooltip: { trigger: 'none' },
+            pieStartAngle: 330,
+            chartArea: { width: '100%', height: '100%' },
+            slices: {
+                0: { color: 'AF3E4D' },
+                1: { color: '63A375' }
+            }
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('matepiechart'));
+        chart.draw(data, options);
+        var percent = 0;
+        if (donem != 0 && tareasm != 0) {
+            var handler = setInterval(function () {
+                if (percent > ((donem / (tareasm + donem) * 100) - 1))
+                    // stop the loop
+                    clearInterval(handler);
+                // values increment
+                percent += 1;
+                // apply new values
+                data.setValue(0, 1, 100 - percent);
+                data.setValue(1, 1, percent);
+                // update the pie
+                chart.draw(data, options);
+                // check if we have reached the desired value
+            }, timetable[Math.floor(Math.random() * 3)]);
+        }
+        var percent = 0;
+        if (tareasm == 0) {
+            var handler = setInterval(function () {
+                // values increment
+                percent += 1;
+                // apply new values
+                data.setValue(0, 1, 100 - percent);
+                data.setValue(1, 1, percent);
+                // update the pie
+                chart.draw(data, options);
+                if (percent > (99))
+                    // stop the loop
+                    clearInterval(handler);
+                // check if we have reached the desired value
+            }, timetable[Math.floor(Math.random() * 3)]);
+        }
+    }
+</script>

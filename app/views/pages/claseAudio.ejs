@@ -1,0 +1,108 @@
+<script type='text/javascript'>
+</script>
+<style>
+    .titulo-contenido,
+    .titulo-material {
+        font-size: 1.5rem;
+        color: #24277F;
+        font-weight: 600;
+    }
+
+    .inst {
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
+
+    .inst-lista {
+        color: transparent;
+        max-width: 15rem;
+    }
+
+    .inst-contenido {
+        font-family: Arial, Helvetica, sans-serif;
+        color: black;
+        margin-left: -1.1rem;
+    }
+
+    .text-contenido {
+        color: black;
+        font-size: 1.1rem;
+        max-width: 25rem;
+        text-align: justify;
+    }
+
+    .material {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .material-imagen img {
+        display: cover;
+        background-color: black;
+        max-width: 30rem;
+        height: auto;
+        max-height: 13rem;
+        border-radius: 15px;
+        box-shadow: 5px 5px 20px -5px #000000;
+    }
+
+    .material video {
+        border-radius: 15px;
+        max-width: 30rem;
+        height: auto;
+        max-height: 20rem;
+        box-shadow: 5px 5px 20px -5px #000000;
+    }
+
+    audio {
+        width: 100%;
+        height: 2rem;
+        border-radius: 5rem 5rem;
+        box-shadow: 5px 5px 20px -5px #000000;
+    }
+
+    .audiocont {
+        background-color: #CEE5D0;
+        ;
+    }
+</style>
+<div class="w-100 h-100 d-inline-flex flex-row flex-wrap justify-content-evenly">
+    <div class=" h-100 d-inline-flex flex-column flex-wrap justify-content-evenly">
+        <span class="titulo-contenido d-flex flex-wrap">
+            <%- clase.titulo %>
+        </span>
+        <div><span class="inst">Instrucciones:</span>
+            <ul class="inst-lista">
+                <% for(var i=0; i< clase.inst.length; i++) {%>
+                    <li class="w-100 text-wrap">
+                        <div class=" inst-contenido">
+                            <i class="far fa-hand-point-right"></i>
+                            <%=clase.inst[i]%>
+                        </div>
+                    </li>
+                    <%}%>
+            </ul>
+        </div>
+        <div class="text-contenido pe-5">
+            <%-clase.texto%>
+        </div>
+    </div>
+    <div class="d-inline-flex flex-column flex-wrap justify-content-start">
+        <span class="titulo-material d-flex flex-wrap">
+            <%- clase.matname %>
+        </span>
+        <div class="material material-imagen" id="imagebody">
+            <img id="imy" alt='<%=clase.material%>' src="/img/<%=clase.material%>.png"
+                onerror="this.onerror = null; this.src='/img/404.png';">
+        </div>
+        <div class="audio-contenedor" id="audiobody">
+            <audio controls src="/audio/<%=clase.material%>.mp3" onended="vidEnd(false)" onloadstart="vidStart()"
+                ontimeupdate="vidStart()" autoplay controlslist="nodownload"
+                onerror="this.onerror = null; this.src = '/audio/404.mp3'">
+            </audio>
+        </div>
+        <div class="text-contenido d-flex flex-wrap">
+            <!-- algo mas -->
+        </div>
+    </div>
+</div>

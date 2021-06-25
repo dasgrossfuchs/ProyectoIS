@@ -7,8 +7,11 @@ const port = process.env.PORT || 8080;
 const app = express();
 
 //Motor de vistas EJS
-app.set('view engine','ejs');
 app.use(ejsLayouts);
+const expressLayouts = require("express-ejs-layouts");
+app.use(expressLayouts);
+app.set('view engine','ejs');
+
 
 //uso del bodyParser
 app.use(express.urlencoded({extended:true}));

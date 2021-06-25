@@ -17,6 +17,7 @@ var mFunc = require('./monfunctions');
 var clist = mFunc.getClassList();
 module.exports = router;
 router.use(expressLayouts);
+router.set('view engine','ejs');
 
 // rutas
 
